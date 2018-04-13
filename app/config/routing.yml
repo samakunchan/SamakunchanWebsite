@@ -1,3 +1,7 @@
+sam_admin:
+    resource: "@SAMAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
 sam_core:
     resource: "@SAMCoreBundle/Resources/config/routing.yml"
     prefix:   /

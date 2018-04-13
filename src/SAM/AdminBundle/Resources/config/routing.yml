@@ -1,0 +1,3 @@
+sam_admin_homepage:
+    path:     /
+    defaults: { _controller: SAMAdminBundle:Admin:index }
