@@ -1,0 +1,4 @@
+services:
+#    sam_core.example:
+#        class: SAM\CoreBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

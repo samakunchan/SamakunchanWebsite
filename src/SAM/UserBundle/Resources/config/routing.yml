@@ -1,3 +1,0 @@
-sam_user_homepage:
-    path:     /
-    defaults: { _controller: SAMUserBundle:Default:index }
