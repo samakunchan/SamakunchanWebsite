@@ -1,3 +1,7 @@
 sam_core_homepage:
     path:     /
-    defaults: { _controller: SAMCoreBundle:Default:index }
+    defaults: { _controller: SAMCoreBundle:Home:index }
+
+sam_core_contactpage:
+    path:     /contact
+    defaults: { _controller: SAMCoreBundle:Home:contact }
