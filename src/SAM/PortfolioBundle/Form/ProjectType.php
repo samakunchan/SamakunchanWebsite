@@ -3,6 +3,7 @@
 namespace SAM\PortfolioBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,7 +21,12 @@ class ProjectType extends AbstractType
             ->add('description', TextType::class)
             ->add('url', TextType::class)
             ->add('image', ImageType::class)
-            ->add('save', SubmitType::class);
+            ->add('technologies', CollectionType::class, [
+                'entry_type'   => TechnologyType::class,
+                'allow_add'    => true,
+                'allow_delete' => true])
+            ->add('save', SubmitType::class)
+            ;
     }/**
      * {@inheritdoc}
      */
