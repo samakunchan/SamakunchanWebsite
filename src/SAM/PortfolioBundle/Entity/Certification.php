@@ -44,13 +44,6 @@ class Certification
     private $url;
 
     /**
-     * @var array
-     *
-     * @ORM\Column(name="technoUsed", type="array")
-     */
-    private $technoUsed;
-
-    /**
      * @ORM\OneToOne(targetEntity="SAM\PortfolioBundle\Entity\Image", cascade={"persist"})
      */
     private $image;
@@ -136,30 +129,6 @@ class Certification
     public function getUrl()
     {
         return $this->url;
-    }
-
-    /**
-     * Set technoUsed
-     *
-     * @param array $technoUsed
-     *
-     * @return Certification
-     */
-    public function setTechnoUsed($technoUsed)
-    {
-        $this->technoUsed = $technoUsed;
-
-        return $this;
-    }
-
-    /**
-     * Get technoUsed
-     *
-     * @return array
-     */
-    public function getTechnoUsed()
-    {
-        return $this->technoUsed;
     }
 
     /**

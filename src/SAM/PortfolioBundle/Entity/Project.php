@@ -2,9 +2,11 @@
 
 namespace SAM\PortfolioBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use SAM\PortfolioBundle\Entity\Image;
+use SAM\PortfolioBundle\Entity\Technology;
 
 /**
  * Project
@@ -45,17 +47,23 @@ class Project
     private $url;
 
     /**
-     * @var array
-     *
-     * @ORM\Column(name="technoUsed", type="array")
-     */
-    private $technoUsed;
-
-    /**
      * @ORM\OneToOne(targetEntity="SAM\PortfolioBundle\Entity\Image", cascade={"persist"})
      */
     private $image;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="SAM\PortfolioBundle\Entity\Technology", cascade={"persist"})
+     * @ORM\JoinTable(name="sam_technology")
+     */
+    private $technologies;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->technologies = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -140,30 +148,6 @@ class Project
     }
 
     /**
-     * Set technoUsed
-     *
-     * @param array $technoUsed
-     *
-     * @return Project
-     */
-    public function setTechnoUsed($technoUsed)
-    {
-        $this->technoUsed = $technoUsed;
-
-        return $this;
-    }
-
-    /**
-     * Get technoUsed
-     *
-     * @return array
-     */
-    public function getTechnoUsed()
-    {
-        return $this->technoUsed;
-    }
-
-    /**
      * Set image
      *
      * @param Image $image
@@ -185,5 +169,39 @@ class Project
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Add technology
+     *
+     * @param Technology $technology
+     *
+     * @return Project
+     */
+    public function addTechnology(Technology $technology)
+    {
+        $this->technologies[] = $technology;
+
+        return $this;
+    }
+
+    /**
+     * Remove technology
+     *
+     * @param Technology $technology
+     */
+    public function removeTechnology(Technology $technology)
+    {
+        $this->technologies->removeElement($technology);
+    }
+
+    /**
+     * Get technologies
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTechnologies()
+    {
+        return $this->technologies;
     }
 }

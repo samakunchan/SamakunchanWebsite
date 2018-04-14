@@ -94,11 +94,8 @@ Créer un utilisateur avec FOSUSER
     
     php bin/console fos:user:create
     
-    
-    {% extends "SAMCoreBundle:Core:home.html.twig" %}
-    
-    {# Dans notre layout, il faut définir le block body #}
-    
-        {% block portfolio %}
-            <p>Salut</p>
-        {% endblock %}
+Formulaire
+--
+Permet de créer un formulaire avec une entity
+
+    php bin/console doctrine:generate:form SAMPortfolioBundle:Project

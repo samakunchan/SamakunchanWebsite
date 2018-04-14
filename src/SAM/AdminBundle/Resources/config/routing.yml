@@ -1,3 +1,11 @@
 sam_admin_homepage:
     path:     /
     defaults: { _controller: SAMAdminBundle:Admin:index }
+
+sam_admin_projectpage:
+    path:     /project
+    defaults: { _controller: SAMAdminBundle:Admin:addProject }
+
+sam_admin_certifpage:
+    path:     /certification
+    defaults: { _controller: SAMAdminBundle:Admin:addCertif }
