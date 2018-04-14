@@ -1,0 +1,4 @@
+sam_portfolio_portfoliopage:
+    path:     /
+    defaults: { _controller: SAMPortfolioBundle:Portfolio:portfolio }
+

@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new SAM\CoreBundle\SAMCoreBundle(),
             new SAM\AdminBundle\SAMAdminBundle(),
+            new SAM\PortfolioBundle\SAMPortfolioBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

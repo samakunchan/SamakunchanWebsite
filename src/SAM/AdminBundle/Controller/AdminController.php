@@ -18,8 +18,8 @@ class AdminController extends Controller
     /**
      * @Security("has_role('ROLE_ADMIN')")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
-        return $this->render('SAMAdminBundle:Core:index.html.twig');
+        return $this->render('SAMAdminBundle:Core:admin.html.twig');
     }
 }

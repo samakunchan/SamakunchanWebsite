@@ -15,7 +15,7 @@ class HomeController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('SAMCoreBundle:Core:index.html.twig');
+        return $this->render('SAMCoreBundle:Core:home.html.twig');
     }
 
     public function contactAction()
