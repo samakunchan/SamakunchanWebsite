@@ -2,6 +2,12 @@
 
 {# Dans notre layout, il faut définir le block body #}
 {% block body %}
+    <div class="alert alert-info" role="alert">
+        {# On affiche tous les messages flash dont le nom est « info » #}
+        {% for message in app.session.flashbag.get('notice') %}
+            <p>Message flash : {{ message }}</p>
+        {% endfor %}
+    </div>
     <h1>Page Admin</h1>
     <ul>
         <li><a href="{{ path('fos_user_profile_show') }}">Profil</a></li>

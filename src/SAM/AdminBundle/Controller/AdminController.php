@@ -34,8 +34,6 @@ class AdminController extends Controller
      */
     public function addProjectAction(Request $request)
     {
-        //var_dump($_POST);
-        //var_dump($_POST['sam_portfoliobundle_project']['technologies']);
         $project = new Project();
         $form   = $this->get('form.factory')->create(ProjectType::class, $project);
 

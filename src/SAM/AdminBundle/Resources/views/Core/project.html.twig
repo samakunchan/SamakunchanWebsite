@@ -1,11 +1,6 @@
 {% extends "SAMCoreBundle::layout.html.twig" %}
 {% block body %}
-    <div>
-        {# On affiche tous les messages flash dont le nom est « info » #}
-        {% for message in app.session.flashbag.get('notice') %}
-            <p>Message flash : {{ message }}</p>
-        {% endfor %}
-    </div>
+
     <h1>Formulaire</h1>
     <div class="well">
         {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}

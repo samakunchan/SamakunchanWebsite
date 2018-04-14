@@ -4,4 +4,12 @@
 
     {% block portfolio %}
         <p>Salut</p>
+
+        {% for project in projects %}
+            <div>
+                <p>{{ project.name }}</p>
+                <p>{{ project.description }}</p>
+                <img src="{{ project.image.url }}" alt="">
+            </div>
+        {% endfor %}
     {% endblock %}
