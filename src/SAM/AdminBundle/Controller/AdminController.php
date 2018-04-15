@@ -17,6 +17,7 @@ use SAM\PortfolioBundle\Form\TechnologyType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AdminController extends Controller
 {
@@ -38,7 +39,6 @@ class AdminController extends Controller
         $form   = $this->get('form.factory')->create(ProjectType::class, $project);
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-            $project->getImage()->upload();
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
             $em->flush();
@@ -47,6 +47,16 @@ class AdminController extends Controller
             return $this->redirectToRoute('sam_admin_homepage');
         }
         return $this->render('SAMAdminBundle:Core:project.html.twig', ['form' => $form->createView()]);
+    }
+
+    public function modifyProjectAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $project = $em->getRepository('SAMAdminBundle:Project')->find($id);
+        if ($project === null){
+            throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
+        }
+
     }
 
     /**

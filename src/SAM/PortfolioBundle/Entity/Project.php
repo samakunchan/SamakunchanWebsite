@@ -47,7 +47,7 @@ class Project
     private $url;
 
     /**
-     * @ORM\OneToOne(targetEntity="SAM\PortfolioBundle\Entity\Image", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="SAM\PortfolioBundle\Entity\Image", cascade={"persist", "remove"})
      */
     private $image;
 
