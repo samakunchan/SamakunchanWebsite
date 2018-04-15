@@ -38,6 +38,7 @@ class AdminController extends Controller
         $form   = $this->get('form.factory')->create(ProjectType::class, $project);
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $project->getImage()->upload();
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
             $em->flush();

@@ -4,6 +4,8 @@ namespace SAM\PortfolioBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 /**
  * Image
  *
@@ -34,6 +36,28 @@ class Image
      * @ORM\Column(name="alt", type="string", length=255)
      */
     private $alt;
+
+    // Pas d'annotation pour doctrine parce que ici, on persistera ailleurs
+    private $file;
+
+    /**
+     * @return mixed
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param mixed $file
+     * @return Image
+     */
+    public function setFile(UploadedFile $file)
+    {
+        $this->file = $file;
+        return $this;
+    }
+
 
 
     /**
@@ -92,5 +116,31 @@ class Image
     public function getAlt()
     {
         return $this->alt;
+    }
+
+    public function upload()
+    {
+        if(null === $this->file){
+            return;
+        }
+        $name = $this->file->getClientOriginalName();
+
+        $this->file->move($this->getUploadRootDir(), $name);
+
+        $this->url = $name;
+
+        $this->alt = $name;
+    }
+
+    public function getUploadDir()
+    {
+        // On retourne le chemin relatif vers l'image pour un navigateur (relatif au répertoire /web donc)
+        return 'uploads/img';
+    }
+
+    protected function getUploadRootDir()
+    {
+        // On retourne le chemin relatif vers l'image pour notre code PHP
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
     }
 }
