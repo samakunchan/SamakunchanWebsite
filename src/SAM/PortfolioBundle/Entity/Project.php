@@ -48,9 +48,10 @@ class Project
     private $url;
 
     /**
-     * @ORM\OneToMany(targetEntity="SAM\PortfolioBundle\Entity\Image", cascade={"persist", "remove"}, mappedBy="image")
+     * @ORM\ManyToMany(targetEntity="SAM\PortfolioBundle\Entity\Image", cascade={"persist", "remove"})
+     *  @ORM\JoinTable(name="sam_images")
      */
-    private $image;
+    private $images;
 
     /**
      * @ORM\ManyToMany(targetEntity="SAM\PortfolioBundle\Entity\Technology", cascade={"persist"})
@@ -64,6 +65,7 @@ class Project
     public function __construct()
     {
         $this->technologies = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
 
@@ -150,37 +152,37 @@ class Project
     }
 
     /**
-     * Add image
+     * Add images
      *
-     * @param Image $image
+     * @param Image $images
      *
      * @return Project
      */
-    public function addImage(Image $image)
+    public function addImage(Image $images)
     {
-        $this->image[] = $image;
+        $this->images[] = $images;
 
         return $this;
     }
 
     /**
-     * Remove image
+     * Remove images
      *
-     * @param Image $image
+     * @param Image $images
      */
-    public function removeImage(Image $image)
+    public function removeImage(Image $images)
     {
-        $this->image->removeElement($image);
+        $this->images->removeElement($images);
     }
 
     /**
-     * Get image
+     * Get images
      *
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getImage()
     {
-        return $this->image;
+        return $this->images;
     }
 
     /**
@@ -215,5 +217,16 @@ class Project
     public function getTechnologies()
     {
         return $this->technologies;
+    }
+
+
+    /**
+     * @return string
+     * For Twig view
+     */
+    public function getWebPath()
+    {
+        return __DIR__.'/../../../../web/uploads/img';
+        //return $this->getUploadDir().'/'.$this->getNewName().$this->getextension();
     }
 }
