@@ -227,6 +227,5 @@ class Project
     public function getWebPath()
     {
         return __DIR__.'/../../../../web/uploads/img';
-        //return $this->getUploadDir().'/'.$this->getNewName().$this->getextension();
     }
 }
