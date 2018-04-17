@@ -21,7 +21,10 @@ class ProjectType extends AbstractType
             ->add('name', TextType::class)
             ->add('description', TextareaType::class)
             ->add('url', TextType::class)
-            ->add('image', ImageType::class)
+            ->add('image', CollectionType::class, [
+                'entry_type'   => ImageType::class,
+                'allow_add'    => true,
+                'allow_delete' => true])
             ->add('technologies', CollectionType::class, [
                 'entry_type'   => TechnologyType::class,
                 'allow_add'    => true,

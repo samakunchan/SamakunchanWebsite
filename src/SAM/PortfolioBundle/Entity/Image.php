@@ -44,6 +44,7 @@ class Image
     //On ajoute cet attribut pour y stocker le nom du fichier temporairement
     private $tempFileName;
 
+    private $newName;
 
 
     /**
@@ -79,8 +80,12 @@ class Image
             return;
         }
 
-        $this->extension = $this->file->guessExtension();
+        $this->extension = $this->file->getClientOriginalExtension();
         $this->alt = $this->file->getClientOriginalName();
+        $this->newName = str_replace($this->extension, '', $this->alt);
+        var_dump($this->file, $this->alt, $this->extension, $this->newName);
+
+        die();
     }
 
     /**
@@ -103,7 +108,7 @@ class Image
         // On déplace le fichier envoyé dans le répertoire de notre choix
         $this->file->move(
             $this->getUploadRootDir(), // Le répertoire de destination
-            $this->id.'.'.$this->extension   // Le nom du fichier à créer, ici « id.extension »
+            $this->newName.$this->extension   // Le nom du fichier à créer, ici « id.extension »
         );
     }
 
@@ -113,7 +118,7 @@ class Image
     public function preRemoveUpload()
     {
         // On sauvegarde temporairement le nom du fichier, car il dépend de l'id
-        $this->tempFilename = $this->getUploadRootDir().'/'.$this->id.'.'.$this->extension;
+        $this->tempFilename = $this->getUploadRootDir().'/'.$this->newName.$this->extension;
     }
 
     /**
@@ -144,15 +149,6 @@ class Image
     {
         // On retourne le chemin relatif vers l'image pour notre code PHP
         return __DIR__.'/../../../../web/'.$this->getUploadDir();
-    }
-
-    /**
-     * @return string
-     * For Twig view
-     */
-    public function getWebPath()
-    {
-        return $this->getUploadDir().'/'.$this->getId().'.'.$this->getextension();
     }
 
     /*
@@ -217,28 +213,11 @@ class Image
         return $this->alt;
     }
 
-
     /**
-     * Set project
-     *
-     * @param \SAM\PortfolioBundle\Entity\Project $project
-     *
-     * @return Image
+     * @return mixed
      */
-    public function setProject(\SAM\PortfolioBundle\Entity\Project $project)
+    public function getNewName()
     {
-        $this->project = $project;
-
-        return $this;
-    }
-
-    /**
-     * Get project
-     *
-     * @return \SAM\PortfolioBundle\Entity\Project
-     */
-    public function getProject()
-    {
-        return $this->project;
+        return $this->newName;
     }
 }
