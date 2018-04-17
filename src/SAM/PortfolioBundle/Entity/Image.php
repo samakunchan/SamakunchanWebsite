@@ -27,9 +27,9 @@ class Image
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="extension", type="string", length=255)
      */
-    private $url;
+    private $extension;
 
     /**
      * @var string
@@ -38,12 +38,13 @@ class Image
      */
     private $alt;
 
+
     // Pas d'annotation pour doctrine parce que ici, on persistera ailleurs
     private $file;
     //On ajoute cet attribut pour y stocker le nom du fichier temporairement
     private $tempFileName;
 
-    private $extension;
+
 
     /**
      * @return mixed
@@ -60,9 +61,9 @@ class Image
     public function setFile(UploadedFile $file)
     {
         $this->file = $file;
-        if ($this->url === null){
-            $this->tempFileName = $this->url;
-            $this->url = null;
+        if ($this->extension === null){
+            $this->tempFileName = $this->extension;
+            $this->extension = null;
             $this->alt = null;
         }
         return $this;
@@ -78,7 +79,7 @@ class Image
             return;
         }
 
-        $this->url = $this->file->guessExtension();
+        $this->extension = $this->file->guessExtension();
         $this->alt = $this->file->getClientOriginalName();
     }
 
@@ -102,7 +103,7 @@ class Image
         // On déplace le fichier envoyé dans le répertoire de notre choix
         $this->file->move(
             $this->getUploadRootDir(), // Le répertoire de destination
-            $this->id.'.'.$this->url   // Le nom du fichier à créer, ici « id.extension »
+            $this->id.'.'.$this->extension   // Le nom du fichier à créer, ici « id.extension »
         );
     }
 
@@ -112,7 +113,7 @@ class Image
     public function preRemoveUpload()
     {
         // On sauvegarde temporairement le nom du fichier, car il dépend de l'id
-        $this->tempFilename = $this->getUploadRootDir().'/'.$this->id.'.'.$this->url;
+        $this->tempFilename = $this->getUploadRootDir().'/'.$this->id.'.'.$this->extension;
     }
 
     /**
@@ -151,7 +152,7 @@ class Image
      */
     public function getWebPath()
     {
-        return $this->getUploadDir().'/'.$this->getId().'.'.$this->getUrl();
+        return $this->getUploadDir().'/'.$this->getId().'.'.$this->getextension();
     }
 
     /*
@@ -169,27 +170,27 @@ class Image
     }
 
     /**
-     * Set url
+     * Set extension
      *
-     * @param string $url
+     * @param string $extension
      *
      * @return Image
      */
-    public function setUrl($url)
+    public function setextension($extension)
     {
-        $this->url = $url;
+        $this->extension = $extension;
 
         return $this;
     }
 
     /**
-     * Get url
+     * Get extension
      *
      * @return string
      */
-    public function getUrl()
+    public function getextension()
     {
-        return $this->url;
+        return $this->extension;
     }
 
     /**
@@ -216,4 +217,28 @@ class Image
         return $this->alt;
     }
 
+
+    /**
+     * Set project
+     *
+     * @param \SAM\PortfolioBundle\Entity\Project $project
+     *
+     * @return Image
+     */
+    public function setProject(\SAM\PortfolioBundle\Entity\Project $project)
+    {
+        $this->project = $project;
+
+        return $this;
+    }
+
+    /**
+     * Get project
+     *
+     * @return \SAM\PortfolioBundle\Entity\Project
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
 }

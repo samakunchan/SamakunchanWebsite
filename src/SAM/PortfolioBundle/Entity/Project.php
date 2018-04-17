@@ -8,6 +8,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use SAM\PortfolioBundle\Entity\Image;
 use SAM\PortfolioBundle\Entity\Technology;
 
+
 /**
  * Project
  *
@@ -47,7 +48,7 @@ class Project
     private $url;
 
     /**
-     * @ORM\OneToOne(targetEntity="SAM\PortfolioBundle\Entity\Image", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="SAM\PortfolioBundle\Entity\Image", cascade={"persist", "remove"}, mappedBy="image")
      */
     private $image;
 
@@ -65,10 +66,11 @@ class Project
         $this->technologies = new ArrayCollection();
     }
 
+
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -148,23 +150,33 @@ class Project
     }
 
     /**
-     * Set image
+     * Add image
      *
      * @param Image $image
      *
      * @return Project
      */
-    public function setImage(Image $image = null)
+    public function addImage(Image $image)
     {
-        $this->image = $image;
+        $this->image[] = $image;
 
         return $this;
     }
 
     /**
+     * Remove image
+     *
+     * @param Image $image
+     */
+    public function removeImage(Image $image)
+    {
+        $this->image->removeElement($image);
+    }
+
+    /**
      * Get image
      *
-     * @return Image
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getImage()
     {
