@@ -1,20 +1,16 @@
 {% extends "SAMCoreBundle:Core:home.html.twig" %}
-
-{# Dans notre layout, il faut définir le block body #}
-
-    {% block portfolio %}
-        {% for project in projects %}
-            <div>
-                <p>{{ project.name }}</p>
-                <p>{{ project.description }}</p>
-                <article class="view-project">
-                    {% for img in project.image.values %}
-                        <div class="image{{ loop.index }}">
-                            <img src="{{ asset('bundles/../uploads/img')}}/{{ img.alt }}" alt="{{ img.alt }}">
-                        </div>
-                    {% endfor %}
-                </article>
-
-            </div>
-        {% endfor %}
-    {% endblock %}
+{% block portfolio %}
+    {% for project in projects %}
+        <div>
+            <p>{{ project.name }}</p>
+            <p>{{ project.description }}</p>
+            <article class="view-project">
+                {% for img in project.image.values %}
+                    <div class="image{{ loop.index }}">
+                        <img src="{{ asset('bundles/../uploads/img')}}/{{ img.alt }}" alt="{{ img.alt }}">
+                    </div>
+                {% endfor %}
+            </article>
+        </div>
+    {% endfor %}
+{% endblock %}
