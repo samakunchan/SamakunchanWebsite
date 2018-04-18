@@ -3,8 +3,6 @@
 {# Dans notre layout, il faut définir le block body #}
 
     {% block portfolio %}
-        <p>Salut</p>
-
         {% for project in projects %}
             <div>
                 <p>{{ project.name }}</p>
