@@ -1,66 +1,66 @@
 {% extends "SAMCoreBundle::layout.html.twig" %}
 {% block body %}
-
-    <h1>Formulaire</h1>
-    <div class="well">
+    <h1>Ajouter un projet</h1>
+    <div class="well form-control">
         {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
         {{ form_errors(form) }}
-        <div class="form-group">
-            {{ form_errors(form.name) }}
-            {{ form_label(form.name, 'Nom du projet') }}
-            {{ form_widget(form.name) }}
-        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-control">
+                    {{ form_errors(form.name) }}
+                    {{ form_label(form.name, 'Nom du projet') }}
+                    {{ form_widget(form.name) }}
+                </div>
+                <div class="form-control">
+                    {{ form_errors(form.url) }}
+                    {{ form_label(form.url, 'Liens vers le site du projet') }}
+                    {{ form_widget(form.url) }}
+                </div>
+                <div class="form-group form-control">
+                    {{ form_errors(form.description) }}
+                    {{ form_label(form.description, 'Description') }}
+                    {{ form_widget(form.description, {'attr': {'cols': '30', 'rows': '15'}}) }}
+                </div>
+            </div>
 
-        <div class="form-group">
-            {{ form_errors(form.url) }}
-            {{ form_label(form.url, 'Liens vers le site du projet') }}
-            {{ form_widget(form.url) }}
-        </div>
+            <div class="col-lg-6">
+                <div class="form-control">
+                    {{ form_errors(form.image) }}
+                    {{ form_label(form.image, 'Images', {'label_attr': {'style': 'font-weight: bold'}}) }}
+                    {{ form_widget(form.image) }}
+                    <a href="#" id="add_image" class="btn btn-default">Ajouter une image</a>
+                </div>
 
-        <div class="form-group">
-            {{ form_errors(form.description) }}
-            {{ form_label(form.description, 'Description') }}
-            {{ form_widget(form.description) }}
+                <div class="form-control">
+                    {{ form_errors(form.technologies) }}
+                    {{ form_label(form.technologies, 'Technologies', {'label_attr': {'style': 'font-weight: bold'}}) }}
+                    {{ form_widget(form.technologies) }}
+                    <a href="#" id="add_technology" class="btn btn-default">Ajouter une technologie</a>
+                </div>
+            </div>
+            <div class="d-block mx-auto">
+                {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+                {{ form_rest(form) }}
+                {{ form_end(form) }}
+            </div>
         </div>
-
-        <div class="form-group">
-            {{ form_errors(form.image) }}
-            {{ form_label(form.image, 'Images', {'label_attr': {'style': 'font-weight: bold'}}) }}
-            {{ form_widget(form.image) }}
-            <a href="#" id="add_image" class="btn btn-default">Ajouter une image</a>
-        </div>
-
-        <div class="form-group">
-            {{ form_errors(form.technologies) }}
-            {{ form_label(form.technologies, 'Technologies', {'label_attr': {'style': 'font-weight: bold'}}) }}
-            {{ form_widget(form.technologies) }}
-            <a href="#" id="add_technology" class="btn btn-default">Ajouter une technologie</a>
-        </div>
-
     {% block javascripts %}
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-                crossorigin="anonymous"></script>
+                crossorigin="anonymous">
+        </script>
     {% endblock %}
-
-        {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
-        {{ form_rest(form) }}
-        {{ form_end(form) }}
     </div>
     {% block scripts %}
         <script type="text/javascript">
             $(document).ready(function() {
-
                 var $containerImg = $('div#sam_portfoliobundle_project_image');
-
                 var indexImg = $containerImg.find(':input').length;
-
                 $('#add_image').click(function(e) {
                     addImage($containerImg);
                     e.preventDefault();
                     return false;
                 });
-
                 if (indexImg === 0) {
                     addImage($containerImg);
                 } else {
@@ -68,7 +68,6 @@
                         addDeleteLink($(this));
                     });
                 }
-
                 function addImage($containerImg) {
                     var template = $containerImg.attr('data-prototype')
                         .replace(/__name__label__/g, 'Image n°' + (indexImg + 1))
@@ -79,7 +78,6 @@
                     $containerImg.append($prototype);
                     indexImg++;
                 }
-
                 var $container = $('div#sam_portfoliobundle_project_technologies');
                 var index = $container.find(':input').length;
                 $('#add_technology').click(function(e) {
@@ -87,7 +85,6 @@
                     e.preventDefault();
                     return false;
                 });
-
                 if (index === 0) {
                     addTechnology($container);
                 } else {
@@ -95,24 +92,20 @@
                         addDeleteLink($(this));
                     });
                 }
-
                 function addTechnology($container) {
                     var template = $container.attr('data-prototype')
                         .replace(/__name__label__/g, 'Technologie n°' + (index+1))
                         .replace(/__name__/g, index);
-
                     var $prototype = $(template);
                     addDeleteLink($prototype);
                     $container.append($prototype);
                     index++;
                 }
-
                 function addDeleteLink($prototype) {
                     var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
                     $prototype.append($deleteLink);
                     $deleteLink.click(function(e) {
                         $prototype.remove();
-
                         e.preventDefault();
                         return false;
                     });
@@ -120,7 +113,6 @@
             });
         </script>
     {% endblock %}
-
 {% endblock %}
 
 

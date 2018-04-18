@@ -19,7 +19,9 @@
             <a class="p-2 text-dark" href="{{ path('sam_core_homepage') }}">Accueil</a>
             <a class="p-2 text-dark" href="{{ path('sam_portfolio_portfoliopage') }}">Portfolio</a>
             <a class="p-2 text-dark" href="{{ path('sam_core_contactpage') }}">Contact</a>
-            <a class="p-2 text-dark" href="{{ path('sam_admin_homepage') }}">admin</a>
+            {% if is_granted('ROLE_ADMIN')  %}
+            <a class="p-2 text-dark" href="{{ path('sam_admin_homepage') }}">Admin</a>
+            {% endif %}
         </nav>
     </header>
     {% endblock %}
