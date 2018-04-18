@@ -76,8 +76,7 @@ Générer la table
 --
 D'abord on créé la requete avec cette ligne de commande ci-dessous
 
-    php bin/console doctrine:schema:update --dump-sql
-    
+    php bin/console doctrine:schema:update --dump-sql    
     
 Utiliser la ligne ci-dessous pour conclure la création de la table
 

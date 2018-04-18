@@ -30,14 +30,11 @@
             <a href="#" id="add_image" class="btn btn-default">Ajouter une image</a>
         </div>
 
-        <div class="well">
-
+        <div class="form-group">
             {{ form_errors(form.technologies) }}
             {{ form_label(form.technologies, 'Technologies', {'label_attr': {'style': 'font-weight: bold'}}) }}
             {{ form_widget(form.technologies) }}
             <a href="#" id="add_technology" class="btn btn-default">Ajouter une technologie</a>
-
-            {# ... #}
         </div>
 
     {% block javascripts %}

@@ -1,3 +1,6 @@
+Infos sur le fos user
+==
+    \vendor\friendsofsymfony\user-bundle\Resources\views\Security\login_content.html.twig
 Symfony Standard Edition
 ========================
 
