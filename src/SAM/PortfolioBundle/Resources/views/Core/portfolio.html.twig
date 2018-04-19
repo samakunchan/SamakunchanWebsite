@@ -1,16 +1,63 @@
 {% extends "SAMCoreBundle:Core:home.html.twig" %}
+    {% block page %}
+        <h1 class="text-center">Mes réalisations</h1>
+    {% endblock %}
 {% block portfolio %}
-    {% for project in projects %}
-        <div>
-            <p>{{ project.name }}</p>
-            <p>{{ project.description }}</p>
-            <article class="view-project">
-                {% for img in project.image.values %}
-                    <div class="image{{ loop.index }}">
-                        <img src="{{ asset('bundles/../uploads/img')}}/{{ img.alt }}" alt="{{ img.alt }}">
-                    </div>
-                {% endfor %}
-            </article>
+    <section class="container">
+        <div class="row">
+            {% for project in projects %}
+                <div class="col-lg-6">
+                    <h2 class="col-lg-12">{{ project.name }}</h2>
+                    <p class="col-lg-12">{{ project.description }}</p>
+                    <article class="view-project">
+                        {% for img in project.image.values %}
+                            {% if loop.index is odd %}
+                                <img class="image{{ loop.index }} col-lg-12" src="{{ asset('bundles/../uploads/img')}}/{{ img.alt }}" alt="{{ img.alt }}">
+
+                            {% endif %}
+                            {% if loop.index is even %}
+                                <h4 class="col-lg-12">Détails</h4>
+                                <nav class="d-flex">
+                                    <mark class="col-lg-6">
+                                        {% for tech in project.technologies.values %}
+                                            <span class="badge badge-info p-2">{{ tech.name }}</span>
+                                        {% endfor %}
+                                    </mark>
+                                    <button type="button"
+                                            class="btn btn-primary"
+                                            title="{{ project.name }}"
+                                            data-trigger="focus"
+                                            data-content="
+                                        <div class='media'>
+                                                <img style='width: 100%;' src='{{ asset('bundles/../uploads/img')}}/{{ img.alt }}'
+                                                class='media-object' alt='Sample Image'>
+                                        </div>"
+                                            data-toggle="popover">Voir un aperçu
+                                    </button>
+                                </nav>
+                                <hr>
+                            {% endif %}
+
+                        {% endfor %}
+                    </article>
+                </div>
+            {% endfor %}
         </div>
-    {% endfor %}
+    </section>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover({
+                placement : 'bottom',
+                html : true,
+                delay : {show: 300, hide: 100},
+                viewport: {
+                    selector: 'popover',
+                    width: 100
+                }
+            });
+        });
+    </script>
 {% endblock %}
