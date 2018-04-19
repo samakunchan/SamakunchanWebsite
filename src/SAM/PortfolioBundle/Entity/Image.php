@@ -83,9 +83,6 @@ class Image
         $this->extension = $this->file->getClientOriginalExtension();
         $this->alt = $this->file->getClientOriginalName();
         $this->newName = str_replace($this->extension, '', $this->alt);
-        var_dump($this->file, $this->alt, $this->extension, $this->newName);
-
-        die();
     }
 
     /**
@@ -133,6 +130,23 @@ class Image
         }
     }
 
+    /**
+     * @return string
+     */
+    public function getUploadDir()
+    {
+        // On retourne le chemin relatif vers l'image pour un navigateur (relatif au répertoire /web donc)
+        return 'uploads/img';
+    }
+
+    /**
+     * @return string
+     */
+    protected function getUploadRootDir()
+    {
+        // On retourne le chemin relatif vers l'image pour notre code PHP
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
     /*
      * SETTER AND GETTER
      * */
