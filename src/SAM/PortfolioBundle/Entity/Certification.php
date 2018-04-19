@@ -2,8 +2,11 @@
 
 namespace SAM\PortfolioBundle\Entity;
 
+use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use SAM\PortfolioBundle\Entity\Image;
+use SAM\PortfolioBundle\Entity\Technology;
 
 /**
  * Certification
@@ -48,6 +51,27 @@ class Certification
      */
     private $image;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="SAM\PortfolioBundle\Entity\Technology", cascade={"persist"})
+     * @ORM\JoinTable(name="sam_certif")
+     */
+    private $technologies;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $date;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->technologies = new ArrayCollection();
+        $this->date = new  DateTime();
+    }
 
     /**
      * Get id
@@ -153,5 +177,63 @@ class Certification
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Add technology
+     *
+     * @param Technology $technology
+     *
+     * @return Certification
+     */
+    public function addTechnology(Technology $technology)
+    {
+        $this->technologies[] = $technology;
+
+        return $this;
+    }
+
+    /**
+     * Remove technology
+     *
+     * @param Technology $technology
+     */
+    public function removeTechnology(Technology $technology)
+    {
+        $this->technologies->removeElement($technology);
+    }
+
+    /**
+     * Get technologies
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTechnologies()
+    {
+        return $this->technologies;
+    }
+
+    /**
+     * Set date
+     *
+     * @param DateTime $date
+     *
+     * @return Certification
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
 }

@@ -80,10 +80,10 @@ D'abord on créé la requete avec cette ligne de commande ci-dessous
     
 Utiliser la ligne ci-dessous pour conclure la création de la table
 
-    php bin/console doctrine:schema:drop --force
     
     php bin/console doctrine:schema:update --force
     
+    php bin/console doctrine:schema:drop --force
 Formulaire
 --
 Permet de créer un formulaire avec une entity
