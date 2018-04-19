@@ -4,8 +4,8 @@ sam_admin_homepage:
 
 sam_admin_projectpage:
     path:     /project
-    defaults: { _controller: SAMAdminBundle:Admin:addProject }
+    defaults: { _controller: SAMAdminBundle:Project:addProject }
 
 sam_admin_certifpage:
     path:     /certification
-    defaults: { _controller: SAMAdminBundle:Admin:addCertif }
+    defaults: { _controller: SAMAdminBundle:Certification:addCertif }

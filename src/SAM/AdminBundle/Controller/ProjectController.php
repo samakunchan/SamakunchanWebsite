@@ -2,11 +2,12 @@
 /**
  * Created by PhpStorm.
  * User: Samakunchan
- * Date: 13/04/2018
- * Time: 23:58
+ * Date: 20/04/2018
+ * Time: 01:18
  */
 
 namespace SAM\AdminBundle\Controller;
+
 
 use SAM\PortfolioBundle\Entity\Certification;
 use SAM\PortfolioBundle\Entity\Project;
@@ -16,24 +17,17 @@ use SAM\PortfolioBundle\Form\ProjectType;
 use SAM\PortfolioBundle\Form\TechnologyType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class AdminController extends Controller
+class ProjectController extends Controller
 {
-
-    /**
-     * @Security("has_role('ROLE_ADMIN')")
-     */
-    public function indexAction()
-    {
-        return $this->render('SAMAdminBundle:Core:admin.html.twig');
-    }
-
     /**
      * @Security("has_role('ROLE_ADMIN')")
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return RedirectResponse|Response
      */
     public function addProjectAction(Request $request)
     {
@@ -50,16 +44,4 @@ class AdminController extends Controller
         }
         return $this->render('SAMAdminBundle:Core:project.html.twig', ['form' => $form->createView()]);
     }
-
-    public function modifyProjectAction($id, Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $project = $em->getRepository('SAMAdminBundle:Project')->find($id);
-        if ($project === null){
-            throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
-        }
-
-    }
-
-
 }
