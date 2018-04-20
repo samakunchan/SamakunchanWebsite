@@ -33,12 +33,10 @@ class ProjectController extends Controller
     {
         $project = new Project();
         $form   = $this->get('form.factory')->create(ProjectType::class, $project);
-
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
             $em->flush();
-
             $this->addFlash('notice', 'Projet bien enregistrée.');
             return $this->redirectToRoute('sam_admin_homepage');
         }
