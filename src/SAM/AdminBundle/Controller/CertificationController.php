@@ -33,7 +33,6 @@ class CertificationController extends Controller
     {
         $certif = new Certification();
         $form   = $this->get('form.factory')->create(CertificationType::class, $certif);
-
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($certif);

@@ -13,7 +13,6 @@
                         {% for img in project.image.values %}
                             {% if loop.index is odd %}
                                 <img class="image{{ loop.index }} col-lg-12" src="{{ asset('bundles/../uploads/img')}}/{{ img.alt }}" alt="{{ img.alt }}">
-
                             {% endif %}
                             {% if loop.index is even %}
                                 <h4 class="col-lg-12">Détails</h4>
@@ -37,12 +36,19 @@
                                 </nav>
                                 <hr>
                             {% endif %}
-
                         {% endfor %}
                     </article>
                 </div>
             {% endfor %}
         </div>
+    </section>
+    <hr>
+    <section>
+        <h1>Mes certifications</h1>
+        {% for certif in certifications %}
+            <a href="{{ certif.url }}">{{ certif.title }}</a>
+            <img class="image1" src="{{ asset('bundles/../uploads/img')}}/{{ certif.image.alt }}" alt="{{ certif.image.alt }}">
+        {% endfor %}
     </section>
 {% endblock %}
 {% block javascripts %}

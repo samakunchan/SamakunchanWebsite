@@ -17,6 +17,7 @@ class PortfolioController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $project = $em->getRepository('SAMPortfolioBundle:Project')->findAll();
-        return $this->render('SAMPortfolioBundle:Core:portfolio.html.twig', ['projects' => $project]);
+        $certification = $em->getRepository('SAMPortfolioBundle:Certification')->findAll();
+        return $this->render('SAMPortfolioBundle:Core:portfolio.html.twig', ['projects' => $project, 'certifications' => $certification]);
     }
 }
