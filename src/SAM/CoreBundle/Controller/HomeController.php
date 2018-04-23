@@ -23,3 +23,4 @@ class HomeController extends Controller
         return $this->render('SAMCoreBundle:Core:contact.html.twig');
     }
 }
+

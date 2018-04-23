@@ -60,6 +60,13 @@ class Certification
     /**
      * @var string
      *
+     * @ORM\Column(name="tag", type="string", length=255, nullable=true)
+     */
+    private $tag;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
@@ -235,5 +242,21 @@ class Certification
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTag()
+    {
+        return $this->tag;
+    }
+
+    /**
+     * @param string $tag
+     */
+    public function setTag($tag)
+    {
+        $this->tag = $tag;
     }
 }

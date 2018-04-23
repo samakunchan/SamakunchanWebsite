@@ -1,8 +1,7 @@
-{% extends "SAMCoreBundle:Core:home.html.twig" %}
-    {% block page %}
-        <h1 class="text-center">Mes réalisations</h1>
-    {% endblock %}
-{% block portfolio %}
+{% extends "SAMCoreBundle::layout.html.twig" %}
+
+{% block body %}
+    <h1 class="text-center">Mes réalisations</h1>
     <section class="container">
         <div class="row">
             {% for project in projects %}
@@ -43,15 +42,76 @@
         </div>
     </section>
     <hr>
-    <section>
+    <section class="container">
         <h1>Mes certifications</h1>
-        {% for certif in certifications %}
-            <a href="{{ certif.url }}">{{ certif.title }}</a>
-            <img class="image1" src="{{ asset('bundles/../uploads/img')}}/{{ certif.image.alt }}" alt="{{ certif.image.alt }}">
-        {% endfor %}
+        <nav class="menuCertif text-center">
+            <div class="btn-group" data-toggle="buttons">
+                <span class="btn btn-warning active">
+                    <a id="WebBtn" class="" href=""> Web</a>
+                </span>
+                <span class="btn btn-warning">
+                    <a id="HTML5Btn" class="" href=""> HTML5/CSS3</a>
+                </span>
+                <span class="btn btn-warning">
+                    <a id="JavacriptBtn" class="" href="">Javacript</a>
+                </span>
+                <span class="btn btn-warning">
+                    <a id="PHPBtn" class="" href="">PHP</a>
+                </span>
+            </div>
+        </nav>
+        <article id="zoneCertif">
+            <h2>Nombre total: {{ certifications | length  }}</h2>
+            {% if listweb %}
+            <section id="webCertif">
+                <h4>Web général</h4>
+                {% for web in listweb %}
+                    <a class="{{ web.url }}" href="{{ asset('bundles/../uploads/img')}}/{{ web.image.alt }}">
+                        <img class="image1" src="{{ asset('bundles/../uploads/img')}}/{{ web.image.alt }}" alt="{{ web.image.alt }}">
+                    </a>
+                    <br>
+                {% endfor %}
+            </section>
+            {% endif %}
+            {% if listhtml %}
+                <section id="htmlCertif">
+                    <h4>HTML5/CSS3</h4>
+                    {% for html in listhtml %}
+                        <a class="{{ html.url }}" href="{{ asset('bundles/../uploads/img')}}/{{ html.image.alt }}">
+                            <img class="image1" src="{{ asset('bundles/../uploads/img')}}/{{ html.image.alt }}" alt="{{ html.image.alt }}">
+                        </a>
+                        <br>
+                    {% endfor %}
+                </section>
+            {% endif %}
+            {% if listjs %}
+            <section id="jsCertif">
+                <h4>Javascript</h4>
+                {% for js in listjs %}
+                    <a class="{{ js.url }}" href="{{ asset('bundles/../uploads/img')}}/{{ js.image.alt }}">
+                        <img class="image1" src="{{ asset('bundles/../uploads/img')}}/{{ js.image.alt }}" alt="{{ js.image.alt }}">
+                    </a>
+                    <br>
+                {% endfor %}
+            </section>
+            {% endif %}
+            {% if listphp %}
+                <section id="phpCertif">
+                    <h4>PHP</h4>
+                    {% for php in listphp %}
+                        <a class="{{ php.url }}" href="{{ asset('bundles/../uploads/img')}}/{{ php.image.alt }}">
+                            <img class="image1" src="{{ asset('bundles/../uploads/img')}}/{{ php.image.alt }}" alt="{{ php.image.alt }}">
+                        </a>
+                        <br>
+                    {% endfor %}
+                </section>
+            {% endif %}
+        </article>
     </section>
 {% endblock %}
-{% block javascripts %}
+
+
+{% block js %}
     {{ parent() }}
     <script type="text/javascript">
         $(document).ready(function(){
@@ -63,6 +123,31 @@
                     selector: 'popover',
                     width: 100
                 }
+            });
+
+            $('#WebBtn').click(function () {
+                $('#webCertif').show(3000);
+                $('#htmlCertif').hide(3000);
+                $('#jsCertif').hide(3000);
+                $('#phpCertif').hide(3000);
+            });
+            $('#HTML5Btn').click(function () {
+                $('#htmlCertif').show(3000);
+                $('#webCertif').hide(3000);
+                $('#jsCertif').hide(3000);
+                $('#phpCertif').hide(3000);
+            });
+            $('#JavacriptBtn').click(function () {
+                $('#jsCertif').show(3000);
+                $('#htmlCertif').hide(3000);
+                $('#webCertif').hide(3000);
+                $('#phpCertif').hide(3000);
+            });
+            $('#PHPBtn').click(function () {
+                $('#phpCertif').show(3000);
+                $('#htmlCertif').hide(3000);
+                $('#webCertif').hide(3000);
+                $('#jsCertif').hide(3000);
             });
         });
     </script>

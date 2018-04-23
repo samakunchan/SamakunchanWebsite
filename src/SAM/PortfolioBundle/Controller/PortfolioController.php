@@ -18,6 +18,19 @@ class PortfolioController extends Controller
         $em = $this->getDoctrine()->getManager();
         $project = $em->getRepository('SAMPortfolioBundle:Project')->findAll();
         $certification = $em->getRepository('SAMPortfolioBundle:Certification')->findAll();
-        return $this->render('SAMPortfolioBundle:Core:portfolio.html.twig', ['projects' => $project, 'certifications' => $certification]);
+        $emx = $this->getDoctrine()->getManager()->getRepository('SAMPortfolioBundle:Certification');
+        $web = $emx->myFindTechnologies('web');
+        $html = $emx->myFindTechnologies('html');
+        $js = $emx->myFindTechnologies('js');
+        $php = $emx->myFindTechnologies('php');
+        return $this->render('SAMPortfolioBundle:Core:portfolio.html.twig',
+            [
+                'projects' => $project,
+                'listweb' => $web,
+                'listhtml' => $html,
+                'listjs' => $js,
+                'listphp' => $php,
+                'certifications' => $certification
+            ]);
     }
 }

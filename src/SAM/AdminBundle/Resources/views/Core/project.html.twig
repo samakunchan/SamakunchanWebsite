@@ -1,4 +1,7 @@
 {% extends "SAMCoreBundle::layout.html.twig" %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock%}
 {% block body %}
     <h1>Ajouter un projet</h1>
     <div class="well form-control">
@@ -44,7 +47,7 @@
                 {{ form_end(form) }}
             </div>
         </div>
-    {% block javascripts %}
+    {% block js %}
         {{ parent() }}
     {% endblock %}
     </div>

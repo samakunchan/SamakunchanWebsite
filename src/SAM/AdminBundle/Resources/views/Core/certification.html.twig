@@ -29,6 +29,12 @@
         </div>
 
         <div class="form-group">
+            {{ form_errors(form.tag) }}
+            {{ form_label(form.tag, 'Ajouter un tag') }}
+            {{ form_widget(form.tag) }}
+        </div>
+
+        <div class="form-group">
             {{ form_errors(form.technologies) }}
             {{ form_label(form.technologies, 'Ajouter une technologie') }}
             {{ form_widget(form.technologies) }}
@@ -40,7 +46,7 @@
     </div>
 {% endblock %}
 
-{% block javascripts %}
+{% block js %}
     {{ parent() }}
     <script type="text/javascript">
         $(document).ready(function() {
