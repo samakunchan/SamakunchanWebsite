@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Samakunchan Website{% endblock %}</title>
     {% block stylesheets %}
-
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
         crossorigin="anonymous">
-        <link rel="stylesheet" href="{{ asset('bundles/samcore/samastyles/styles.css') }}">
+        {% stylesheets '@SAMCoreBundle/Resources/public/css/styles.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
     {% endblock %}
 </head>
 <body>
@@ -43,7 +44,7 @@
                         data-toggle="dropdown"
                         aria-haspopup="true"
                         aria-expanded="false">
-                      Menu Plus
+                      Menu
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right p-2" aria-labelledby="dropdownMenu2">

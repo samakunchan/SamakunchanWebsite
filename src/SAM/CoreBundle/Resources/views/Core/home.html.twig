@@ -1,4 +1,19 @@
 {% extends "SAMCoreBundle::layout.html.twig" %}
 {% block body %}
-    <h1>Page Accueil</h1>
+    <section class="homePage">
+        {% image '@SAMCoreBundle/Resources/public/images/laptop2.jpg' %}
+        <img class="w-100" src="{{ asset_url }}" alt="laptop" />
+        {% endimage %}
+    </section>
+    <h2>Région d'origine</h2>
+    {% image '@SAMCoreBundle/Resources/public/images/montagne.jpg' %}
+    <img class="w-100" src="{{ asset_url }}" alt="laptop" />
+    {% endimage %}
+    {% image '@SAMCoreBundle/Resources/public/images/route.jpg' %}
+    <img  src="{{ asset_url }}" alt="laptop" />
+    {% endimage %}
+    {% image '@SAMCoreBundle/Resources/public/images/margouillat.jpg' %}
+    <img  src="{{ asset_url }}" alt="laptop" />
+    {% endimage %}
+
 {% endblock %}

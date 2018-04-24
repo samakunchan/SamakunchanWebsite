@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new SAM\CoreBundle\SAMCoreBundle(),
             new SAM\AdminBundle\SAMAdminBundle(),
             new SAM\PortfolioBundle\SAMPortfolioBundle(),
+            new Symfony\Bundle\AsseticBundle\AsseticBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
