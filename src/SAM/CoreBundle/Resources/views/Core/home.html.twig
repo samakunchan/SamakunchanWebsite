@@ -5,6 +5,12 @@
         <img class="w-100" src="{{ asset_url }}" alt="laptop" />
         {% endimage %}
     </section>
+    <h2>Actualités</h2>
+    <section class="github">
+        <h3>Github</h3>
+        <p>Le dernier commit du projet</p>
+        <pre class="bg-dark text-white" id="commit"></pre>
+    </section>
     <h2>Région d'origine</h2>
     {% image '@SAMCoreBundle/Resources/public/images/montagne.jpg' %}
     <img class="w-100" src="{{ asset_url }}" alt="laptop" />
@@ -15,5 +21,13 @@
     {% image '@SAMCoreBundle/Resources/public/images/margouillat.jpg' %}
     <img  src="{{ asset_url }}" alt="laptop" />
     {% endimage %}
-
+    {% javascripts '@SAMCoreBundle/Resources/public/js/ajax.js' output='js/compiled/main.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script>
+        ajaxGet("https://api.github.com/repos/samakunchan/SamakunchanWebsite/commits", function (rep) {
+            var test = JSON.parse(rep);
+            document.getElementById("commit").innerHTML = test[0].commit.message;
+        });
+    </script>
 {% endblock %}
