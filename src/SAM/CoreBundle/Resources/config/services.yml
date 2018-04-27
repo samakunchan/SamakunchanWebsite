@@ -1,4 +1,22 @@
 services:
+    sama_core.twitter:
+        class: Abraham\TwitterOAuth\TwitterOAuth
+        arguments:
+            - 0X9Yv03L3D7xSZFHAyxzfB02t
+            - bODxXtlz1FU5jQDYPObviDYJzprIzdtK0AQr4pkJHra5WCypBT
+            - 783716463714693120-1we7LDEv4zH88yHe5MaUKKGxd7aEVnL
+            - vEKqgLSNL6vNzbWj1OIax4olyWEskrbN6k9yPCdE1Obns
+    twig.extension.date:
+           class: SAM\CoreBundle\Extensions\Twig_Extensions_Extension_Date
+           arguments: ["@translator"]
+           tags:
+                - { name: twig.extension }
+    twig.extension.deletehashtag:
+               class: SAM\CoreBundle\Twig\AppExtension
+               public: false
+               tags:
+                    - { name: twig.extension }
+
 #    sam_core.example:
 #        class: SAM\CoreBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]

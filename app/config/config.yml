@@ -90,3 +90,8 @@ assetic:
     use_controller: '%kernel.debug%'
     filters:
         cssrewrite: ~
+
+liip_url_auto_converter:
+    linkclass:
+    target: _blank
+    debugmode: false

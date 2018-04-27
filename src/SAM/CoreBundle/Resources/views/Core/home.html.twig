@@ -1,33 +1,79 @@
 {% extends "SAMCoreBundle::layout.html.twig" %}
 {% block body %}
-    <section class="homePage">
-        {% image '@SAMCoreBundle/Resources/public/images/laptop2.jpg' %}
+    <section class="container">
+        <section class="homePage jumbotron">
+            <h1>Bonjour</h1>
+        </section>
+        <h2>Actualités</h2>
+        <section class="actu row">
+            <article class="github col-lg-6">
+                <h3>Github</h3>
+                <pre class="bg-dark text-white p-2">Projet : Refonte du portfolio</pre>
+                <pre class="bg-dark text-white p-2" id="dateCommit"></pre>
+                <pre class="bg-dark text-white p-2" id="commit"></pre>
+            </article>
+            <article style="height: 50%; overflow: auto" class="twitter col-lg-6">
+                <h3>Twitter</h3>
+                {% for twitter in statuses %}
+                    {% if twitter.retweeted %}
+                        <div class="p-4">
+                            <h5>
+                                <img class="imgProfilTwit" src="{{ twitter.retweeted_status.user.profile_image_url }}" alt="">
+                                <a href="https://twitter.com/{{ twitter.retweeted_status.user.name }}">{{ twitter.retweeted_status.user.name  }}</a>
+                                <small class="time">{{ twitter.retweeted_status.created_at| time_diff }}</small>
+                            </h5>
+                            <div>
+                                {{ twitter.full_text | deleteHashTags | converturls }}
+                            </div>
+                        </div>
+                    {% else%}
+                        <div class="p-4">
+                            <h5>
+                                <img class="imgProfilTwit" src="{{ twitter.user.profile_image_url }}" alt="">
+                                <a href="https://twitter.com/{{ twitter.user.name }}">{{ twitter.user.name  }}</a>
+                                <small class="time">{{ twitter.created_at| time_diff }}</small>
+                            </h5>
+                            <div>
+                                {{ twitter.full_text | deleteHashTags | converturls }}
+                                {% if twitter.entities.media %}
+                                    {% for image in twitter.entities.media %}
+                                        <img style="width: 100%" src="{{ image.media_url }}" alt="">
+                                    {% endfor%}
+                                {% endif%}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% if twitter.entities.urls %}
+                        {% for image in twitter.entities.urls %}
+                            <img src="{{ image.display_url }}" alt="">
+                        {% endfor %}
+                    {% endif %}
+                    <hr>
+                {% endfor %}
+            </article>
+        </section>
+        <h2>Région d'origine</h2>
+        {% image '@SAMCoreBundle/Resources/public/images/montagne.jpg' %}
         <img class="w-100" src="{{ asset_url }}" alt="laptop" />
         {% endimage %}
+        {% image '@SAMCoreBundle/Resources/public/images/route.jpg' %}
+        <img  src="{{ asset_url }}" alt="laptop" />
+        {% endimage %}
+        {% image '@SAMCoreBundle/Resources/public/images/margouillat.jpg' %}
+        <img  src="{{ asset_url }}" alt="laptop" />
+        {% endimage %}
     </section>
-    <h2>Actualités</h2>
-    <section class="github">
-        <h3>Github</h3>
-        <p>Le dernier commit du projet</p>
-        <pre class="bg-dark text-white" id="commit"></pre>
-    </section>
-    <h2>Région d'origine</h2>
-    {% image '@SAMCoreBundle/Resources/public/images/montagne.jpg' %}
-    <img class="w-100" src="{{ asset_url }}" alt="laptop" />
-    {% endimage %}
-    {% image '@SAMCoreBundle/Resources/public/images/route.jpg' %}
-    <img  src="{{ asset_url }}" alt="laptop" />
-    {% endimage %}
-    {% image '@SAMCoreBundle/Resources/public/images/margouillat.jpg' %}
-    <img  src="{{ asset_url }}" alt="laptop" />
-    {% endimage %}
-    {% javascripts '@SAMCoreBundle/Resources/public/js/ajax.js' output='js/compiled/main.js' %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-    <script>
-        ajaxGet("https://api.github.com/repos/samakunchan/SamakunchanWebsite/commits", function (rep) {
-            var test = JSON.parse(rep);
-            document.getElementById("commit").innerHTML = test[0].commit.message;
-        });
-    </script>
+
+
 {% endblock %}
+    {% block js %}
+        <script>
+            ajaxGet("https://api.github.com/repos/samakunchan/SamakunchanWebsite/commits", function (rep) {
+                var api = JSON.parse(rep);
+                document.getElementById("commit").textContent = api[0].commit.message;
+                document.getElementById("dateCommit").textContent = new Date(api[0].commit.committer.date).toLocaleString()
+            });
+        </script>
+    {% endblock %}
+

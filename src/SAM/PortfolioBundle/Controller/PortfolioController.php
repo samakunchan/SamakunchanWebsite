@@ -23,6 +23,7 @@ class PortfolioController extends Controller
         $html = $emx->myFindTechnologies('html');
         $js = $emx->myFindTechnologies('js');
         $php = $emx->myFindTechnologies('php');
+
         return $this->render('SAMPortfolioBundle:Core:portfolio.html.twig',
             [
                 'projects' => $project,
