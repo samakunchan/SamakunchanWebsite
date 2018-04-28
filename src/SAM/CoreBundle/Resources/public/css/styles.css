@@ -82,6 +82,23 @@ body {
     max-width: 500px;
 }
 
+.actu{
+    background-color: #E9ECEF;
+}
+.twitter, .github{
+    height: 65vh;
+    overflow: auto;
+    padding: 5px;
+}
+.twitterbg{
+    background-color: white;
+}
+.twitterbg:hover{
+    background-color: #F5F8FA;
+}
 .imgProfilTwit{
    border-radius: 30px;
+}
+.twitter h3{
+    color: #1dcaff;
 }

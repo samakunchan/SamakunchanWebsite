@@ -2,21 +2,22 @@
 {% block body %}
     <section class="container">
         <section class="homePage jumbotron">
-            <h1>Bonjour</h1>
+            <h1 class="text-center">Bienvenue</h1>
+            <p class="text-center">Ce site web présente mes activités et mes projets réalisés.</p>
         </section>
-        <h2>Actualités</h2>
+        <h2 class="text-center">Actualités</h2>
         <section class="actu row">
             <article class="github col-lg-6">
-                <h3>Github</h3>
+                <h3>Github <i class="fa fa-github" style="font-size:30px"></i></h3>
                 <pre class="bg-dark text-white p-2">Projet : Refonte du portfolio</pre>
                 <pre class="bg-dark text-white p-2" id="dateCommit"></pre>
                 <pre class="bg-dark text-white p-2" id="commit"></pre>
             </article>
-            <article style="height: 50%; overflow: auto" class="twitter col-lg-6">
-                <h3>Twitter</h3>
+            <article  class="twitter col-lg-6">
+                <h3>Twitter <i class="fa fa-twitter" style="font-size:30px"></i></h3>
                 {% for twitter in statuses %}
                     {% if twitter.retweeted %}
-                        <div class="p-4">
+                        <div class="p-4 twitterbg">
                             <h5>
                                 <img class="imgProfilTwit" src="{{ twitter.retweeted_status.user.profile_image_url }}" alt="">
                                 <a href="https://twitter.com/{{ twitter.retweeted_status.user.name }}">{{ twitter.retweeted_status.user.name  }}</a>
@@ -24,10 +25,15 @@
                             </h5>
                             <div>
                                 {{ twitter.full_text | deleteHashTags | converturls }}
+                                {% if twitter.retweeted_status.extended_entities.media %}
+                                    {% for imageRT in twitter.retweeted_status.extended_entities.media %}
+                                        <img style="width: 100%" src="{{ imageRT.media_url }}" alt="">
+                                    {% endfor%}
+                                {% endif%}
                             </div>
                         </div>
                     {% else%}
-                        <div class="p-4">
+                        <div class="p-4 twitterbg">
                             <h5>
                                 <img class="imgProfilTwit" src="{{ twitter.user.profile_image_url }}" alt="">
                                 <a href="https://twitter.com/{{ twitter.user.name }}">{{ twitter.user.name  }}</a>
@@ -53,16 +59,15 @@
                 {% endfor %}
             </article>
         </section>
-        <h2>Région d'origine</h2>
-        {% image '@SAMCoreBundle/Resources/public/images/montagne.jpg' %}
-        <img class="w-100" src="{{ asset_url }}" alt="laptop" />
-        {% endimage %}
-        {% image '@SAMCoreBundle/Resources/public/images/route.jpg' %}
-        <img  src="{{ asset_url }}" alt="laptop" />
-        {% endimage %}
-        {% image '@SAMCoreBundle/Resources/public/images/margouillat.jpg' %}
-        <img  src="{{ asset_url }}" alt="laptop" />
-        {% endimage %}
+        <section class="region p-4">
+            <h2 class="text-center">Région d'origine</h2>
+            {% image '@SAMCoreBundle/Resources/public/images/route.jpg' %}
+            <img  src="{{ asset_url }}" alt="laptop" />
+            {% endimage %}
+            {% image '@SAMCoreBundle/Resources/public/images/margouillat.jpg' %}
+            <img  src="{{ asset_url }}" alt="laptop" />
+            {% endimage %}
+        </section>
     </section>
 
 

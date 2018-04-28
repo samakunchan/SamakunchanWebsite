@@ -16,8 +16,7 @@ class HomeController extends Controller
     {
         $connection  = $this->container->get('sama_core.twitter');
         $connection->get("account/verify_credentials");
-        $statuses = $connection->get("statuses/user_timeline", ["count" => 2, "exclude_replies" => true, 'tweet_mode'=>'extended']);
-        //var_dump($statuses[0]->entities->media);
+        $statuses = $connection->get("statuses/user_timeline", ["count" => 4, "exclude_replies" => false, 'tweet_mode'=>'extended']);
         return $this->render('SAMCoreBundle:Core:home.html.twig', ['statuses' => $statuses]);
     }
 
