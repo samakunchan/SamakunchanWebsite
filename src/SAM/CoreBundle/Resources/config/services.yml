@@ -12,10 +12,10 @@ services:
            tags:
                 - { name: twig.extension }
     twig.extension.deletehashtag:
-               class: SAM\CoreBundle\Twig\AppExtension
-               public: false
-               tags:
-                    - { name: twig.extension }
+           class: SAM\CoreBundle\Twig\AppExtension
+           public: false
+           tags:
+                - { name: twig.extension }
 
 #    sam_core.example:
 #        class: SAM\CoreBundle\Example

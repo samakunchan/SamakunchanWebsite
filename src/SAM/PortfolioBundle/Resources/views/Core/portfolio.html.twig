@@ -2,59 +2,61 @@
 
 {% block body %}
     <h1 class="text-center">Mes réalisations</h1>
-    <section class="container">
+    <section class="container" id="project">
         <div class="row">
             {% for project in projects %}
-                <div class="col-lg-6">
-                    <h2 class="col-lg-12">{{ project.name }}</h2>
-                    <p class="col-lg-12">{{ project.description }}</p>
-                    <article class="view-project">
-                        {% for img in project.image.values %}
-                            {% if loop.index is odd %}
-                                <img class="image{{ loop.index }} col-lg-12" src="{{ asset('bundles/../uploads/img')}}/{{ img.alt }}" alt="{{ img.alt }}">
-                            {% endif %}
-                            {% if loop.index is even %}
-                                <h4 class="col-lg-12">Détails</h4>
-                                <nav class="d-flex">
-                                    <mark class="col-lg-6">
-                                        {% for tech in project.technologies.values %}
-                                            <span class="badge badge-info p-2">{{ tech.name }}</span>
-                                        {% endfor %}
-                                    </mark>
-                                    <button type="button"
-                                            class="btn btn-primary"
-                                            title="{{ project.name }}"
-                                            data-trigger="focus"
-                                            data-content="
+                <div class="col-lg-6 p-3 hovereffect {{ project.name |lower }}">
+                    <div class="overlay">
+                        <h2 class="col-lg-12">{{ project.name |upper }}</h2>
+                        <p class="col-lg-12">{{ project.description }}</p>
+                        <article class="view-project">
+                            {% for img in project.image.values %}
+                                {% if loop.index is odd %}
+                                    <div>
+                                        <img class="image{{ loop.index }} col-lg-12 border border-info" src="{{ asset('bundles/../uploads/img')}}/{{ img.alt }}" alt="{{ img.alt }}">
+                                        <a class="info text-warning" href="{{ project.url }}" target="_blank">Vers le site</a>
+                                    </div>
+                                {% endif %}
+                                {% if loop.index is even %}
+                                    <h4 class="col-lg-12">Détails</h4>
+                                    <nav class="d-flex">
+                                        <div class="col-lg-9">
+                                            {% for tech in project.technologies.values %}
+                                                <span class="badge badge-info p-2">{{ tech.name }}</span>
+                                            {% endfor %}
+                                        </div>
+                                        <button type="button"
+                                                class="btn btn-primary"
+                                                title="{{ project.name }}"
+                                                data-trigger="focus"
+                                                data-content="
                                         <div class='media'>
                                                 <img style='width: 100%;' src='{{ asset('bundles/../uploads/img')}}/{{ img.alt }}'
                                                 class='media-object' alt='Sample Image'>
                                         </div>"
-                                            data-toggle="popover">Voir un aperçu
-                                    </button>
-                                </nav>
-                                <hr>
-                            {% endif %}
-                        {% endfor %}
-                    </article>
+                                                data-toggle="popover">Voir un aperçu
+                                        </button>
+                                    </nav>
+                                {% endif %}
+                            {% endfor %}
+                        </article>
+                    </div>
                 </div>
             {% endfor %}
         </div>
     </section>
     <hr>
-    <section class="container">
-        <h1>Mes certifications</h1>
-        <article class="d-flex">
+    <section class="container" id="certifications">
+        <h1 class="text-center">Mes certifications</h1>
+        <div class="donut row">
             <canvas id="myChart" class="w-75 h-50" style="width:20%"></canvas>
-            {% image '@SAMCoreBundle/Resources/public/images/donut.png' %}
-            <img class="w-25" src="{{ asset_url }}" alt="">
-            {% endimage  %}
-        </article>
+        </div>
+        <br>
         <h2>Nombre total: {{ certifications | length }}</h2>
         <article id="zoneCertif" class="row">
             {% if listweb %}
-            <section id="webCertif" class="col-lg-6">
-                <h4>Web général</h4>
+            <section id="webCertif" class="col-lg-5">
+                <h4 class="text-center">Web général</h4>
                 {% for web in listweb %}
                     <a class="allweb {{ web.certifNumber }}" href="{{ asset('bundles/../uploads/img')}}/{{ web.image.alt }}">
                         {{ web.title }}
@@ -64,8 +66,8 @@
             </section>
             {% endif %}
             {% if listhtml %}
-                <section id="htmlCertif" class="col-lg-6">
-                    <h4>HTML5/CSS3</h4>
+                <section id="htmlCertif" class="col-lg-5">
+                    <h4 class="text-center">HTML5/CSS3</h4>
                     {% for html in listhtml %}
                         <a class="allhtml {{ html.certifNumber }}" href="{{ asset('bundles/../uploads/img')}}/{{ html.image.alt }}">
                             {{ html.title }}
@@ -75,8 +77,8 @@
                 </section>
             {% endif %}
             {% if listjs %}
-            <section id="jsCertif" class="col-lg-6">
-                <h4>Javascript</h4>
+            <section id="jsCertif" class="col-lg-5">
+                <h4 class="text-center">Javascript</h4>
                 {% for js in listjs %}
                     <a class="alljs {{ js.certifNumber}}" href="{{ asset('bundles/../uploads/img')}}/{{ js.image.alt }}">
                         {{ js.title }}
@@ -86,8 +88,8 @@
             </section>
             {% endif %}
             {% if listphp %}
-                <section id="phpCertif" class="col-lg-6">
-                    <h4>PHP</h4>
+                <section id="phpCertif" class="col-lg-5">
+                    <h4 class="text-center">PHP</h4>
                     {% for php in listphp %}
                         <a class="allphp {{ php.certifNumber }}" href="{{ asset('bundles/../uploads/img')}}/{{ php.image.alt }}">
                             {{ php.title }}

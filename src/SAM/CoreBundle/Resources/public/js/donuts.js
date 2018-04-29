@@ -50,17 +50,17 @@ var config = {
                 document.getElementsByClassName('allphp').length
             ],
             backgroundColor: [
-                '#ff2f30',
-                '#ffad17',
-                '#449c7c',
-                '#1717ff'
+                '#1fff50',
+                '#25e9ff',
+                '#1b8fff',
+                '#1c65ff'
             ],
             label: 'Dataset 2',
             hoverBackgroundColor : [
-                '#ff1b1c',
-                '#FFA500',
-                '#32936f',
-                '#0000ff'
+                '#1fff50',
+                '#25e9ff',
+                '#1b8fff',
+                '#1c65ff'
             ],
             hoverBorderColor: [
                 'white',

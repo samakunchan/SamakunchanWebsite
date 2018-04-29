@@ -9,7 +9,7 @@
         <section class="actu row">
             <article class="github col-lg-6">
                 <h3>Github <i class="fa fa-github" style="font-size:30px"></i></h3>
-                <pre class="bg-dark text-white p-2">Projet : Refonte du portfolio</pre>
+                <pre class="bg-dark text-white p-2" id="projectMd">Projet : Refonte du portfolio</pre>
                 <pre class="bg-dark text-white p-2" id="dateCommit"></pre>
                 <pre class="bg-dark text-white p-2" id="commit"></pre>
             </article>
@@ -25,10 +25,12 @@
                             </h5>
                             <div>
                                 {{ twitter.full_text | deleteHashTags | converturls }}
-                                {% if twitter.retweeted_status.extended_entities.media %}
+                                {% if twitter.retweeted_status.extended_entities is defined %}
                                     {% for imageRT in twitter.retweeted_status.extended_entities.media %}
                                         <img style="width: 100%" src="{{ imageRT.media_url }}" alt="">
                                     {% endfor%}
+                                {% elseif twitter.retweeted_status.entities is defined%}
+                                    <p>Pas de tweet</p>
                                 {% endif%}
                             </div>
                         </div>
@@ -78,6 +80,10 @@
                 var api = JSON.parse(rep);
                 document.getElementById("commit").textContent = api[0].commit.message;
                 document.getElementById("dateCommit").textContent = new Date(api[0].commit.committer.date).toLocaleString()
+            });
+            ajaxGet("https://api.github.com/repos/samakunchan/SamakunchanWebsite", function (rep) {
+                var api = JSON.parse(rep);
+                console.log(api);
             });
         </script>
     {% endblock %}
