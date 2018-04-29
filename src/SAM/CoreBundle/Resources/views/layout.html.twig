@@ -3,6 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% image '@SAMCoreBundle/Resources/public/images/favicon-96x96.png' %}
+    <link rel="icon"
+          type="image/png"
+          sizes="96x96"
+          href="{{ asset_url }}">
+    {% endimage %}
+
     <title>{% block title %}Samakunchan Website{% endblock %}</title>
     {% block stylesheets %}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
@@ -63,6 +70,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
                 integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
                 crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js" type="text/javascript"></script>
         {% javascripts '@SAMCoreBundle/Resources/public/js/ajax.js' output='js/compiled/main.js' %}
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}

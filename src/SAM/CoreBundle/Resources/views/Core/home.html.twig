@@ -5,8 +5,13 @@
             <h1 class="text-center">Bienvenue</h1>
             <p class="text-center">Ce site web présente mes activités et mes projets réalisés.</p>
         </section>
+        <section class="competence m-5">
+            <h2 class="text-center">Mes compétences</h2>
+            <canvas id="myBar" class="w-100 h-25 text-center"></canvas>
+        </section>
+        <hr>
         <h2 class="text-center">Actualités</h2>
-        <section class="actu row">
+        <section class="actu row m-1">
             <article class="github col-lg-6">
                 <h3>Github <i class="fa fa-github" style="font-size:30px"></i></h3>
                 <pre class="bg-dark text-white p-2" id="projectMd">Projet : Refonte du portfolio</pre>
@@ -75,6 +80,9 @@
 
 {% endblock %}
     {% block js %}
+        {% javascripts '@SAMCoreBundle/Resources/public/js/bar.js' output='js/compiled/main.js' %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
         <script>
             ajaxGet("https://api.github.com/repos/samakunchan/SamakunchanWebsite/commits", function (rep) {
                 var api = JSON.parse(rep);
