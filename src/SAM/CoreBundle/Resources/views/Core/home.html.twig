@@ -6,20 +6,33 @@
             <p class="text-center">Ce site web présente mes activités et mes projets réalisés.</p>
         </section>
         <section class="competence m-5">
-            <h2 class="text-center">Mes compétences</h2>
-            <canvas id="myBar" class="w-100 h-25 text-center"></canvas>
+            <h3 class="text-center">Mes compétences</h3>
+            <canvas id="myBar" class="w-100 h-25 text-center d-none d-lg-block"></canvas>
+            <div class="d-lg-none">
+                <p>HTML5/CSS3: <span id="nbHTML"></span></p>
+                <p>Javascript: <span id="nbJs"></span></p>
+                <p>Bootstrap: <span id="nbBoot"></span></p>
+                <p>PHP: <span id="nbPHP"></span></p>
+                <p>MySQL: <span id="nbSQL"></span></p>
+                <p>Symfony: <span id="nbSymf"></span></p>
+                <p>NodeJs: <span id="nbNode"></span></p>
+            </div>
         </section>
         <hr>
         <h2 class="text-center">Actualités</h2>
+        <article class="d-flex justify-content-around title">
+            <h3 class="d-none d-lg-block">Github <i class="fa fa-github" style="font-size:30px"></i></h3>
+            <h3 class="d-none d-lg-block twitterColor">Twitter <i class="fa fa-twitter" style="font-size:30px"></i></h3>
+        </article>
         <section class="actu row m-1">
             <article class="github col-lg-6">
-                <h3>Github <i class="fa fa-github" style="font-size:30px"></i></h3>
+                <h3 class="d-lg-none">Github <i class="fa fa-github" style="font-size:30px"></i></h3>
                 <pre class="bg-dark text-white p-2" id="projectMd">Projet : Refonte du portfolio</pre>
                 <pre class="bg-dark text-white p-2" id="dateCommit"></pre>
                 <pre class="bg-dark text-white p-2" id="commit"></pre>
             </article>
             <article  class="twitter col-lg-6">
-                <h3>Twitter <i class="fa fa-twitter" style="font-size:30px"></i></h3>
+                <h3 class="d-lg-none twitterColor">Twitter <i class="fa fa-twitter" style="font-size:30px"></i></h3>
                 {% for twitter in statuses %}
                     {% if twitter.retweeted %}
                         <div class="p-4 twitterbg">
@@ -32,7 +45,7 @@
                                 {{ twitter.full_text | deleteHashTags | converturls }}
                                 {% if twitter.retweeted_status.extended_entities is defined %}
                                     {% for imageRT in twitter.retweeted_status.extended_entities.media %}
-                                        <img style="width: 100%" src="{{ imageRT.media_url }}" alt="">
+                                        <img style="width: 100%" src="{{ imageRT.media_url }}" alt="{{ imageRT.media_url }}">
                                     {% endfor%}
                                 {% elseif twitter.retweeted_status.entities is defined%}
                                     <p>Pas de tweet</p>
@@ -50,7 +63,7 @@
                                 {{ twitter.full_text | deleteHashTags | converturls }}
                                 {% if twitter.entities.media %}
                                     {% for image in twitter.entities.media %}
-                                        <img style="width: 100%" src="{{ image.media_url }}" alt="">
+                                        <img style="width: 100%" src="{{ image.media_url }}" alt="{{ image.media_url }}">
                                     {% endfor%}
                                 {% endif%}
                             </div>
@@ -59,28 +72,26 @@
 
                     {% if twitter.entities.urls %}
                         {% for image in twitter.entities.urls %}
-                            <img src="{{ image.display_url }}" alt="">
+                            <img src="{{ image.display_url }}" alt="{{ image.display_url }}">
                         {% endfor %}
                     {% endif %}
                     <hr>
                 {% endfor %}
             </article>
         </section>
-        <section class="region p-4">
-            <h2 class="text-center">Région d'origine</h2>
+        <section class="region p-4 row">
+            <h2 class="text-center col-lg-12">Région d'origine</h2>
             {% image '@SAMCoreBundle/Resources/public/images/route.jpg' %}
-            <img  src="{{ asset_url }}" alt="laptop" />
+            <img class="col-lg-6 d-none d-lg-block" src="{{ asset_url }}" alt="route" />
             {% endimage %}
             {% image '@SAMCoreBundle/Resources/public/images/margouillat.jpg' %}
-            <img  src="{{ asset_url }}" alt="laptop" />
+            <img class="col-sm-8 text-center col-lg-4" src="{{ asset_url }}" alt="margouillat" />
             {% endimage %}
         </section>
     </section>
-
-
 {% endblock %}
     {% block js %}
-        {% javascripts '@SAMCoreBundle/Resources/public/js/bar.js' output='js/compiled/main.js' %}
+        {% javascripts '@SAMCoreBundle/Resources/public/js/competence.js' output='js/compiled/main.js' %}
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
         <script>
@@ -88,10 +99,6 @@
                 var api = JSON.parse(rep);
                 document.getElementById("commit").textContent = api[0].commit.message;
                 document.getElementById("dateCommit").textContent = new Date(api[0].commit.committer.date).toLocaleString()
-            });
-            ajaxGet("https://api.github.com/repos/samakunchan/SamakunchanWebsite", function (rep) {
-                var api = JSON.parse(rep);
-                console.log(api);
             });
         </script>
     {% endblock %}

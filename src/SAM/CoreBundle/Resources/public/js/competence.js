@@ -1,6 +1,6 @@
 var ctx = document.getElementById("myBar").getContext('2d');
 var myChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'horizontalBar',
     data: {
         labels: ["HTML5", "CSS3", "Javascript", "MySQL", "PHP", "NodeJs", "GIT",  "Bootstrap", "Symfony"],
         datasets: [
@@ -22,7 +22,7 @@ var myChart = new Chart(ctx, {
             },
             {
             label: 'Back end',
-            data: [0, 0, 0, 6, 6, 5, 3],
+            data: [0, 0, 0, 6, 6, 3, 3],
             backgroundColor: [
                 '',
                 '',
@@ -86,3 +86,25 @@ var myChart = new Chart(ctx, {
         }
     }
 });
+for (var i = 0 ; i < 9 ; i++){
+    document.getElementById("nbHTML").innerHTML += "<i class=\"fa fa-star\" aria-hidden=\"true\"></i>";
+}
+for (var j = 0 ; j < 6 ; j++){
+    document.getElementById("nbJs").innerHTML += "<i class=\"fa fa-star\" aria-hidden=\"true\"></i>";
+}
+for (var k = 0 ; k < 5 ; k++){
+    document.getElementById("nbBoot").innerHTML += "<i class=\"fa fa-star\" aria-hidden=\"true\"></i>";
+}
+
+for (var l = 0 ; l < 6 ; l++){
+    document.getElementById("nbPHP").innerHTML += "<i class=\"fa fa-star\" aria-hidden=\"true\"></i>";
+}
+for (var m = 0 ; m < 6 ; m++){
+    document.getElementById("nbSQL").innerHTML += "<i class=\"fa fa-star\" aria-hidden=\"true\"></i>";
+}
+for (var n = 0 ; n < 3 ; n++){
+    document.getElementById("nbSymf").innerHTML += "<i class=\"fa fa-star\" aria-hidden=\"true\"></i>";
+}
+for (var o = 0 ; o < 3 ; o++){
+    document.getElementById("nbNode").innerHTML += "<i class=\"fa fa-star\" aria-hidden=\"true\"></i>";
+}

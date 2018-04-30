@@ -67,9 +67,28 @@ body {
 .popover{
     max-width: 500px;
 }
+#dropdownMenu2{
+    width: 100%;
+}
+.dropdown-menu{
+    transform: translate3d(-7px, -68px, 0px)!important;
+    min-width: 100%!important;
+}
+.dropdown-menu li{
+    text-align: center;
+    margin: 0;
+}
 .actu{
     background-color: #E9ECEF;
     box-shadow: 2px 2px 2px black;
+}
+.twitter{
+    background-color: #E8F5FD;
+    border: solid #caf5fd;
+}
+.github{
+    background-color: #6f767c;
+    border: solid #343A40;
 }
 .twitter, .github{
     height: 65vh;
@@ -85,7 +104,7 @@ body {
 .imgProfilTwit{
    border-radius: 30px;
 }
-.twitter h3{
+.twitterColor{
     color: #1dcaff;
 }
 /*****/
@@ -153,4 +172,28 @@ img.salary{
     bottom: 15%;
     right: 20%;
     display: inline-block;
+}
+.media-object{
+    transition: all 0.4s ease-in-out;
+}
+@media screen and (max-width: 1024px)
+{
+    .hovereffect a.info {
+        margin: -21px 0 0 0;
+        padding: 39px 76px;
+    }
+}
+@media screen and (max-width: 800px)
+{
+    .hovereffect a.info {
+        margin: -44px 0 0 53px;
+        padding: 48px 80px;
+    }
+}
+@media screen and (max-width: 500px)
+{
+    .hovereffect a.info {
+        margin: -15px 0 0 27px;
+        padding: 28px 35px;
+    }
 }

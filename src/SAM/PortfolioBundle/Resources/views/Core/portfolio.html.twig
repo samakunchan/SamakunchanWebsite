@@ -7,7 +7,7 @@
             {% for project in projects %}
                 <div class="col-lg-6 p-3 hovereffect {{ project.name |lower }}">
                     <div class="overlay">
-                        <h2 class="col-lg-12">{{ project.name |upper }}</h2>
+                        <h2 class="col-lg-12 text-center">{{ project.name |upper }}</h2>
                         <p class="col-lg-12">{{ project.description }}</p>
                         <article class="view-project">
                             {% for img in project.image.values %}
@@ -26,7 +26,7 @@
                                             {% endfor %}
                                         </div>
                                         <button type="button"
-                                                class="btn btn-primary"
+                                                class="btn btn-primary d-none d-lg-block"
                                                 title="{{ project.name }}"
                                                 data-trigger="focus"
                                                 data-content="
