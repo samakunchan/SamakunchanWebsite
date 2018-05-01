@@ -5,48 +5,48 @@
 {% block body %}
     <h1>Ajouter un projet</h1>
     <div class="well form-control">
-        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
-        {{ form_errors(form) }}
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="form-control">
-                    {{ form_errors(form.name) }}
-                    {{ form_label(form.name, 'Nom du projet') }}
-                    {{ form_widget(form.name) }}
-                </div>
-                <div class="form-control">
-                    {{ form_errors(form.url) }}
-                    {{ form_label(form.url, 'Liens vers le site du projet') }}
-                    {{ form_widget(form.url) }}
-                </div>
-                <div class="form-group form-control">
-                    {{ form_errors(form.description) }}
-                    {{ form_label(form.description, 'Description') }}
-                    {{ form_widget(form.description, {'attr': {'cols': '30', 'rows': '15'}}) }}
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="form-control">
-                    {{ form_errors(form.image) }}
-                    {{ form_label(form.image, 'Images', {'label_attr': {'style': 'font-weight: bold'}}) }}
-                    {{ form_widget(form.image) }}
-                    <a href="#" id="add_image" class="btn btn-default">Ajouter une image</a>
+            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+            {{ form_errors(form) }}
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-control">
+                        {{ form_errors(form.name) }}
+                        {{ form_label(form.name, 'Nom du projet') }}
+                        {{ form_widget(form.name) }}
+                    </div>
+                    <div class="form-control">
+                        {{ form_errors(form.url) }}
+                        {{ form_label(form.url, 'Liens vers le site du projet') }}
+                        {{ form_widget(form.url) }}
+                    </div>
+                    <div class="form-group form-control">
+                        {{ form_errors(form.description) }}
+                        {{ form_label(form.description, 'Description') }}
+                        {{ form_widget(form.description, {'attr': {'cols': '30', 'rows': '15'}}) }}
+                    </div>
                 </div>
 
-                <div class="form-control">
-                    {{ form_errors(form.technologies) }}
-                    {{ form_label(form.technologies, 'Technologies', {'label_attr': {'style': 'font-weight: bold'}}) }}
-                    {{ form_widget(form.technologies) }}
-                    <a href="#" id="add_technology" class="btn btn-default">Ajouter une technologie</a>
+                <div class="col-lg-6">
+                    <div class="form-control">
+                        {{ form_errors(form.image) }}
+                        {{ form_label(form.image, 'Images', {'label_attr': {'style': 'font-weight: bold'}}) }}
+                        {{ form_widget(form.image) }}
+                        <a href="#" id="add_image" class="btn btn-default">Ajouter une image</a>
+                    </div>
+
+                    <div class="form-control">
+                        {{ form_errors(form.technologies) }}
+                        {{ form_label(form.technologies, 'Technologies', {'label_attr': {'style': 'font-weight: bold'}}) }}
+                        {{ form_widget(form.technologies) }}
+                        <a href="#" id="add_technology" class="btn btn-default">Ajouter une technologie</a>
+                    </div>
+                </div>
+                <div class="d-block mx-auto">
+                    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+                    {{ form_rest(form) }}
+                    {{ form_end(form) }}
                 </div>
             </div>
-            <div class="d-block mx-auto">
-                {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
-                {{ form_rest(form) }}
-                {{ form_end(form) }}
-            </div>
-        </div>
     {% block js %}
         {% javascripts '@SAMCoreBundle/Resources/public/js/technoProject.js' output='js/compiled/main.js' %}
         <script src="{{ asset_url }}"></script>

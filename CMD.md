@@ -89,3 +89,4 @@ Formulaire
 Permet de créer un formulaire avec une entity
 
     php bin/console doctrine:generate:form SAMPortfolioBundle:Project
+    

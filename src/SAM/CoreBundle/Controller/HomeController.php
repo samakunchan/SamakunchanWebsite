@@ -8,7 +8,10 @@
 
 namespace SAM\CoreBundle\Controller;
 
+use SAM\CoreBundle\Entity\Contact;
+use SAM\CoreBundle\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends Controller
 {
@@ -20,9 +23,28 @@ class HomeController extends Controller
         return $this->render('SAMCoreBundle:Core:home.html.twig', ['statuses' => $statuses]);
     }
 
-    public function contactAction()
+    public function contactAction(Request $request)
     {
-        return $this->render('SAMCoreBundle:Core:contact.html.twig');
+        $contact = new Contact();
+        $form   = $this->get('form.factory')->create(ContactType::class, $contact);
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $this->sendEMail($form->getData());
+        }
+
+        return $this->render('SAMCoreBundle:Core:contact.html.twig', ['form' => $form->createView()]);
+    }
+
+    private function sendEmail($data){
+        $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com', 465,'ssl')
+            ->setUsername('samakunchan@gmail.com')
+            ->setPassword('lesdieux974');
+
+        $mailer = \Swift_Mailer::newInstance($transport);
+        $message = \Swift_Message::newInstance('Samakunchan Website')
+            ->setFrom(array($data->getEmail() => $data->getSubject()))
+            ->setTo(array("samakunchan@gmail.com" => "samakunchan@gmail.com"))
+            ->setBody($data->getMessage(), 'text/html');
+        $result = $mailer->send($message);
     }
 }
 

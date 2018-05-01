@@ -6,6 +6,12 @@ html,
 body {
     height: 100%;
 }
+.samaGrey{
+    background-color: rgba(192,192,192, 0.4);
+}
+.samaGrey1{
+    background-color: rgba(192,192,192, 0.4);
+}
 .form-signin {
     width: 100%;
     max-width: 420px;
@@ -60,7 +66,7 @@ body {
 }
 .menuFooter{
     position: fixed;
-    bottom: 10%;
+    bottom: 5%;
     right: 0;
     z-index: 10;
 }

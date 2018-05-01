@@ -1,4 +1,62 @@
 {% extends "SAMCoreBundle::layout.html.twig" %}
 {% block body %}
-    <h1>Page Contact</h1>
+    <div class="well form-control">
+    {{ form_start(form, {'attr': {'class': 'form-horizontal samaGrey p-2'}}) }}
+    {{ form_errors(form) }}
+    <div class="row">
+        <div class="col-md-4 col-lg-4 samaGrey1 p-2">
+            <h2 class="col-lg-12">Mes coordonnées </h2>
+            <div class="col-lg-12">
+                <i class="material-icons">phone_android</i>
+                <span>06.46.60.34.61</span>
+            </div>
+            <div class="col-lg-12">
+                <i class="material-icons">mail</i>
+                <span>cedric.badjah@gmail.com</span>
+            </div>
+            <div class="col-lg-12"></div>
+        </div>
+        <div class="col-md-4 col-lg-4 mx-auto samaGrey1 p-2">
+            <div class="form-control">
+                {{ form_errors(form.name) }}
+                <div class="text-center">
+                    {{ form_label(form.name, 'Nom', {'label_attr': {'style': 'font-weight: bold; text-transform: uppercase;'}}) }}
+                </div>
+                {{ form_widget(form.name) }}
+
+                {{ form_errors(form.company) }}
+                <div class="text-center">
+                    {{ form_label(form.company, 'Entreprise', {'label_attr': {'style': 'font-weight: bold; text-transform: uppercase;'}}) }}
+                </div>
+                {{ form_widget(form.company) }}
+
+                {{ form_errors(form.email) }}
+                <div class="text-center">
+                    {{ form_label(form.email, 'Email', {'label_attr': {'style': 'font-weight: bold; text-transform: uppercase;'}}) }}
+                </div>
+                {{ form_widget(form.email) }}
+
+                {{ form_errors(form.phone) }}
+                <div class="text-center">
+                    {{ form_label(form.phone, 'Téléphone', {'label_attr': {'style': 'font-weight: bold; text-transform: uppercase;'}}) }}
+                </div>
+                {{ form_widget(form.phone) }}
+
+                {{ form_errors(form.subject) }}
+                <div class="text-center">
+                    {{ form_label(form.subject, 'Object du message', {'label_attr': {'style': 'font-weight: bold; text-transform: uppercase;'}}) }}
+                </div>
+                {{ form_widget(form.subject) }}
+            </div>
+            <div class="form-control text-center">
+                {{ form_errors(form.message) }}
+                {{ form_label(form.message, 'Message', {'label_attr': {'style': 'font-weight: bold; text-transform: uppercase;'}}) }}
+                {{ form_widget(form.message, {'attr': {'cols': '30', 'rows': '10'}}) }}
+            </div>
+            {{ form_widget(form.envoyer, {'attr': {'class': 'btn btn-primary'}}) }}
+            {{ form_rest(form) }}
+            {{ form_end(form) }}
+        </div>
+
+    </div>
 {% endblock %}
