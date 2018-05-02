@@ -12,7 +12,12 @@ Clear cache
 ---
 
 Pour l'environnement prod:
-
+    
+    1) Se rendre sur le dossier /web/var
+    2) Ouvrir l'invite de commande
+    3) Utiliser cette commande : chmod -R cache/
+    Cette commande va donner la permission afin de pouvoir utiliser le clear:cache
+    
     php bin/console cache:clear --env=prod
     
 Pour l'environnement dev:

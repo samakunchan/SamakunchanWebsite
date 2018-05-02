@@ -104,10 +104,10 @@
 
 
 {% block js %}
-    {% javascripts '@SAMCoreBundle/Resources/public/js/donuts.js' output='js/compiled/main.js' %}
+    {% javascripts '@SAMCoreBundle/Resources/public/js/donuts.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
-    {% javascripts '@SAMCoreBundle/Resources/public/js/pop.js' output='js/compiled/main.js' %}
+    {% javascripts '@SAMCoreBundle/Resources/public/js/pop.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}
