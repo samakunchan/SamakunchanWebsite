@@ -1,37 +1,29 @@
 {% extends "SAMCoreBundle::layout.html.twig" %}
 {% block body %}
     <section class="container">
-        <section class="homePage jumbotron">
-            <h1 class="text-center">Bienvenue</h1>
-            <p class="text-center">Ce site web présente mes activités et mes projets réalisés.</p>
+        <section class="homePage jumbotron part1">
+            <h1 class="text-center p-2">Bienvenue</h1>
+            {% set texte = "Bonjour, je m'appelle Cédric Badjah, je suis développeur web junior
+            et je vous souhaite la bienvenu sur mon site." %}
+            {% set texte1 = "Ce site web présente mes activités et mes projets réalisés." %}
+            <span id="textTwig" class="d-none"> {{ texte }}</span>
+            <span id="textTwig1" class="d-none"> {{ texte1 }}</span>
+            <p id="textTitle"></p>
+            <p class="webmaster">Cédric Badjah</p>
         </section>
-        <section class="competence m-5">
-            <h3 class="text-center">Mes compétences</h3>
-            <canvas id="myBar" class="w-100 h-25 text-center d-none d-lg-block"></canvas>
-            <div class="d-lg-none">
-                <p>HTML5/CSS3: <span id="nbHTML"></span></p>
-                <p>Javascript: <span id="nbJs"></span></p>
-                <p>Bootstrap: <span id="nbBoot"></span></p>
-                <p>PHP: <span id="nbPHP"></span></p>
-                <p>MySQL: <span id="nbSQL"></span></p>
-                <p>Symfony: <span id="nbSymf"></span></p>
-                <p>NodeJs: <span id="nbNode"></span></p>
-            </div>
-        </section>
-        <hr>
-        <h2 class="text-center">Actualités</h2>
-        <article class="d-flex justify-content-around title">
-            <h3 class="d-none d-lg-block">Github <i class="fa fa-github" style="font-size:30px"></i></h3>
-            <h3 class="d-none d-lg-block twitterColor">Twitter <i class="fa fa-twitter" style="font-size:30px"></i></h3>
+        <h2 class="text-center part2">Actualités</h2>
+        <article class="d-flex justify-content-around title part2">
+            <h3 class="smAdapt part2">Github <i class="fa fa-github" style="font-size:30px"></i></h3>
+            <h3 class="smAdapt twitterColor part2">Twitter <i class="fa fa-twitter" style="font-size:30px"></i></h3>
         </article>
-        <section class="actu row m-1">
-            <article class="github col-lg-6">
+        <section class="actu row m-1 part2 d-flex">
+            <article class="github part2 col-lg-6">
                 <h3 class="d-lg-none">Github <i class="fa fa-github" style="font-size:30px"></i></h3>
                 <pre class="bg-dark text-white p-2" id="projectMd">Projet : Refonte du portfolio</pre>
                 <pre class="bg-dark text-white p-2" id="dateCommit"></pre>
                 <pre class="bg-dark text-white p-2" id="commit"></pre>
             </article>
-            <article  class="twitter col-lg-6">
+            <article  class="twitter part2 col-lg-6">
                 <h3 class="d-lg-none twitterColor">Twitter <i class="fa fa-twitter" style="font-size:30px"></i></h3>
                 {% for twitter in statuses %}
                     {% if twitter.retweeted %}
@@ -48,7 +40,7 @@
                                         <img style="width: 100%" src="{{ imageRT.media_url }}" alt="{{ imageRT.media_url }}">
                                     {% endfor%}
                                 {% elseif twitter.retweeted_status.entities is defined%}
-                                    <p>Pas de tweet</p>
+                                    <p>(image non disponible)</p>
                                 {% endif%}
                             </div>
                         </div>
@@ -61,7 +53,7 @@
                             </h5>
                             <div>
                                 {{ twitter.full_text | deleteHashTags | converturls }}
-                                {% if twitter.entities.media %}
+                                {% if twitter.entities.media is defined%}
                                     {% for image in twitter.entities.media %}
                                         <img style="width: 100%" src="{{ image.media_url }}" alt="{{ image.media_url }}">
                                     {% endfor%}
@@ -79,10 +71,23 @@
                 {% endfor %}
             </article>
         </section>
-        <section class="region p-4 row">
-            <h2 class="text-center col-lg-12">Région d'origine</h2>
+        <section class="competence m-5 part3">
+            <h3 class="text-center">Mes compétences</h3>
+            <canvas id="myBar" class="w-100 h-25 text-center d-none d-lg-block"></canvas>
+            <div class="d-lg-none">
+                <p>HTML5/CSS3: <span id="nbHTML"></span></p>
+                <p>Javascript: <span id="nbJs"></span></p>
+                <p>Bootstrap: <span id="nbBoot"></span></p>
+                <p>PHP: <span id="nbPHP"></span></p>
+                <p>MySQL: <span id="nbSQL"></span></p>
+                <p>Symfony: <span id="nbSymf"></span></p>
+                <p>NodeJs: <span id="nbNode"></span></p>
+            </div>
+        </section>
+        <section class="region p-4 row part4">
+            <h2 class="text-center col-lg-12 ">Région d'origine</h2>
             {% image '@SAMCoreBundle/Resources/public/images/route.jpg' %}
-            <img class="col-lg-6 d-none d-lg-block" src="{{ asset_url }}" alt="route" />
+            <img class="col-lg-6 smAdapt" src="{{ asset_url }}" alt="route" />
             {% endimage %}
             {% image '@SAMCoreBundle/Resources/public/images/margouillat.jpg' %}
             <img class="col-sm-8 text-center col-lg-4" src="{{ asset_url }}" alt="margouillat" />
@@ -95,7 +100,38 @@
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
         <script>
-            ajaxGet("https://api.github.com/repos/samakunchan/SamakunchanWebsite/commits", function (rep) {
+            $(document).ready(function () {
+                setTimeout(function () {
+                    $('.part1').fadeIn(0, "linear", function () {
+                        var text = $("#textTwig")[0].innerHTML;
+                        var text1 = $("#textTwig1")[0].innerHTML;
+                        for(var i = 0 ; i < text.length ; i++){
+                            (function(i) {
+                                setTimeout(function() {
+                                    document.getElementById("textTitle").innerHTML += text.charAt(i);
+                                }, i * 10);
+                            }(i))
+                        }
+                        setTimeout(function () {
+                            document.getElementById("textTitle").innerHTML = "";
+                            for(var i = 0 ; i < text.length ; i++){
+                                (function(i) {
+                                    setTimeout(function() {
+                                        document.getElementById("textTitle").innerHTML += text1.charAt(i);
+                                    }, i * 10);
+                                }(i))
+                            }
+                        },5000);
+                        setTimeout(function () {
+                            $('.webmaster').show();
+                        }, 7000)
+                    })
+                }, 1000);
+                setTimeout(function () {
+                    $('.part2').fadeIn();
+                }, 2000)
+            });
+            ajaxGet("{{ apiUrl }}", function (rep) {
                 var api = JSON.parse(rep);
                 document.getElementById("commit").textContent = api[0].commit.message;
                 document.getElementById("dateCommit").textContent = new Date(api[0].commit.committer.date).toLocaleString()

@@ -2,9 +2,62 @@
     --input-padding-x: .75rem;
     --input-padding-y: .75rem;
 }
-html,
-body {
+
+html, body {
     height: 100%;
+    background-color: #e2d4b7;
+}
+header{
+    background-color: #b9ae96;
+}
+#fondLoader {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #30989D;
+}
+#loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 2;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid darkgrey;
+    border-radius: 50%;
+    border-top: 16px solid white;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+#textTitle{
+    margin-left: 25vw;
+    width: 30vw;
+}
+.webmaster{
+    display: none;
+    position: relative;
+    float: right;
+}
+.homePage{
+    height: 250px;
+}
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.part1, .part2, .part3, .part4, #footer{
+    display: none;
 }
 .samaGrey{
     background-color: rgba(192,192,192, 0.4);
@@ -187,6 +240,9 @@ img.salary{
     .hovereffect a.info {
         margin: -21px 0 0 0;
         padding: 39px 76px;
+    }
+    .smAdapt{
+        display: none;
     }
 }
 @media screen and (max-width: 800px)

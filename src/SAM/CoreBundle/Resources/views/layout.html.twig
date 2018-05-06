@@ -23,6 +23,9 @@
     {% endblock %}
 </head>
 <body>
+    <div id="fondLoader">
+        <div id="loader"></div>
+    </div>
     {% block nav %}
     <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
         <h5 class="my-0 mr-md-auto font-weight-normal">Samakunchan Website</h5>
@@ -44,7 +47,7 @@
     </main>
     <hr>
     {% block footer %}
-        <footer>
+        <footer id="footer">
             <nav class="menuFooter">
                 <div class="dropup">
                     <button class="btn btn-default dropdown-toggle menuBtn "
@@ -80,6 +83,13 @@
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
         <script >
+            $(document).ready(function () {
+                setTimeout(function () {
+                    $('#fondLoader').hide();
+                    $('#loader').hide();
+                    $('#footer').show(8000);
+                }, 500)
+            });
             var Scroll = {
                 parameter : {
                     block: "start",

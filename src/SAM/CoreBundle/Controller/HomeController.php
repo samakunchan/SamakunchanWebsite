@@ -17,10 +17,11 @@ class HomeController extends Controller
 {
     public function indexAction()
     {
+        $repo = 'SamakunchanWebsite';
         $connection  = $this->container->get('sama_core.twitter');
         $connection->get("account/verify_credentials");
         $statuses = $connection->get("statuses/user_timeline", ["count" => 4, "exclude_replies" => false, 'tweet_mode'=>'extended']);
-        return $this->render('SAMCoreBundle:Core:home.html.twig', ['statuses' => $statuses]);
+        return $this->render('SAMCoreBundle:Core:home.html.twig', ['statuses' => $statuses, 'apiUrl'=> 'https://api.github.com/repos/samakunchan/'.$repo.'/commits']);
     }
 
     public function contactAction(Request $request)

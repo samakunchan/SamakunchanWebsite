@@ -24,7 +24,9 @@ Pour l'environnement dev:
 
     php bin/console cache:clear
     
+Commande pour PuTTY
 
+    /usr/bin/php5.5-cli composer.phar
     
 Générer une entity
 
