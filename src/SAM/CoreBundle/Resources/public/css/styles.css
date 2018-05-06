@@ -36,7 +36,8 @@ header{
 
 #textTitle{
     margin-left: 25vw;
-    width: 30vw;
+    width: 30vw;/*
+    text-shadow: 1px 1px black;*/
 }
 .webmaster{
     display: none;
@@ -44,7 +45,11 @@ header{
     float: right;
 }
 .homePage{
-    height: 250px;
+    height: 20vw;
+}
+.section2{
+    background-color: #7c7c7c;
+    padding: 5px;
 }
 @-webkit-keyframes spin {
     0% { -webkit-transform: rotate(0deg); }
@@ -56,7 +61,7 @@ header{
     100% { transform: rotate(360deg); }
 }
 
-.part1, .part2, .part3, .part4, #footer{
+.part1, .part2, .part3, .part4,.welcome, #footer{
     display: none;
 }
 .samaGrey{
@@ -65,6 +70,13 @@ header{
 .samaGrey1{
     background-color: rgba(192,192,192, 0.4);
 }
+
+.citationSection{
+    padding: 80px;
+    background-color: white;
+    text-align: center;
+}
+
 .form-signin {
     width: 100%;
     max-width: 420px;
@@ -170,8 +182,8 @@ header{
 /*****/
 /*****/
 .hovereffect:hover .overlay {
-    background-color: rgba(48, 152, 157, 0.4);
-    box-shadow: 5px 5px 5px #30989D ;
+    background-color: rgba(244, 187, 211, 0.4);
+    box-shadow: 5px 5px 5px #7c7c7c;
     transition: all 0.4s ease-in-out;
 }
 .hovereffect a.info {
@@ -182,8 +194,8 @@ header{
     text-decoration: none;
     text-transform: uppercase;
     color: #fff;
-    border: 1px solid rgba(48, 152, 157, 1);
-    background-color: rgba(48, 152, 157, 0.4);
+    border: 1px solid rgb(244, 173, 179);
+    background-color: rgba(244, 187, 211, 0.4);
     opacity: 0;
     filter: alpha(opacity=0);
     transform: scale(0);
