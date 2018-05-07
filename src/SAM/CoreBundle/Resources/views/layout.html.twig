@@ -22,7 +22,7 @@
         {% endstylesheets %}
     {% endblock %}
 </head>
-<body>
+<body id="body">
     <div id="fondLoader">
         <div id="loader"></div>
     </div>
@@ -30,11 +30,11 @@
     <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
         <h5 class="my-0 mr-md-auto font-weight-normal">Samakunchan Website</h5>
         <nav class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-dark" href="{{ path('sam_core_homepage') }}">Accueil</a>
-            <a class="p-2 text-dark" href="{{ path('sam_portfolio_portfoliopage') }}">Portfolio</a>
-            <a class="p-2 text-dark" href="{{ path('sam_core_contactpage') }}">Contact</a>
+            <a class="p-2 text-dark samCtrl" href="{{ path('sam_core_homepage') }}">Accueil</a>
+            <a class="p-2 text-dark samCtrl" href="{{ path('sam_portfolio_portfoliopage') }}">Portfolio</a>
+            <a class="p-2 text-dark samCtrl" href="{{ path('sam_core_contactpage') }}">Contact</a>
             {% if is_granted('ROLE_ADMIN')  %}
-            <a class="p-2 text-dark" href="{{ path('sam_admin_homepage') }}">Admin</a>
+            <a class="p-2 text-dark samCtrl" href="{{ path('sam_admin_homepage') }}">Admin</a>
             {% endif %}
         </nav>
     </header>
@@ -47,28 +47,28 @@
     </main>
     <hr>
     {% block footer %}
+        <nav class="menuFooter">
+            <div class="dropup">
+                <button class="btn btn-default dropdown-toggle menuBtn "
+                        type="button"
+                        id="dropdownMenu2"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                    Menu
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right p-2" aria-labelledby="dropdownMenu2">
+                    <li><a class="text-dark " id="toTop" href="">Remonter</a></li>
+                    {% if is_granted('ROLE_ADMIN')  %}
+                        <li><a class="text-dark " href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+                    {% else %}
+                        <li><a class="text-dark " href="{{ path('fos_user_security_login') }}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
         <footer id="footer">
-            <nav class="menuFooter">
-                <div class="dropup">
-                    <button class="btn btn-default dropdown-toggle menuBtn "
-                            type="button"
-                            id="dropdownMenu2"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false">
-                        Menu
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-right p-2" aria-labelledby="dropdownMenu2">
-                        <li><a class="text-dark " id="toTop" href="">Remonter</a></li>
-                        {% if is_granted('ROLE_ADMIN')  %}
-                            <li><a class="text-dark " href="{{ path('fos_user_security_logout') }}">Logout</a></li>
-                        {% else %}
-                            <li><a class="text-dark " href="{{ path('fos_user_security_login') }}">Login</a></li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </nav>
             <p>By Samakunchan © with Symfony 3.4.8.</p>
         </footer>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

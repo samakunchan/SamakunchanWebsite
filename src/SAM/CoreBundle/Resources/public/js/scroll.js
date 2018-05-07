@@ -3,7 +3,8 @@ parameter : {
     block: "start",
     behavior: "smooth"
 },
-smooth : function () {
+smooth : function (event) {
+    event.preventDefault();
     document.body.scrollIntoView(Scroll.parameter);
 }
 };
