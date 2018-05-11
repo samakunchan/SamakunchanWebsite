@@ -1,7 +1,7 @@
 {% extends "SAMCoreBundle::layout.html.twig" %}
 
 {% block body %}
-    <h1 class="text-center">Mes réalisations</h1>
+    <h1 class="text-center">{{ 'portfolio.title'|trans }}</h1>
     <section class="container" id="project">
         <div class="row">
             {% for project in projects %}
@@ -14,11 +14,11 @@
                                 {% if loop.index is odd %}
                                     <div>
                                         <img class="image{{ loop.index }} col-lg-12" src="{{ asset('bundles/../uploads/img')}}/{{ img.alt }}" alt="{{ img.alt }}">
-                                        <a class="info text-warning" href="{{ project.url }}" target="_blank">Vers le site</a>
+                                        <a class="info text-warning" href="{{ project.url }}" target="_blank">{{ 'portfolio.redirect'|trans }}</a>
                                     </div>
                                 {% endif %}
                                 {% if loop.index is even %}
-                                    <h4 class="col-lg-12">Détails</h4>
+                                    <h4 class="col-lg-12">{{ 'portfolio.details'|trans }}</h4>
                                     <nav class="d-flex">
                                         <div class="col-lg-9">
                                             {% for tech in project.technologies.values %}
@@ -34,7 +34,7 @@
                                                 <img style='width: 100%;' src='{{ asset('bundles/../uploads/img')}}/{{ img.alt }}'
                                                 class='media-object' alt='Sample Image'>
                                         </div>"
-                                                data-toggle="popover">Voir un aperçu
+                                                data-toggle="popover">{{ 'portfolio.look'|trans }}
                                         </button>
                                     </nav>
                                 {% endif %}
@@ -47,16 +47,20 @@
     </section>
     <hr>
     <section class="container" id="certifications">
-        <h1 class="text-center">Mes certifications</h1>
+        <h1 class="text-center">{{ 'portfolio.certificat'|trans }}</h1>
         <div class="donut">
-            <canvas id="myChart" class="w-75 h-50" ></canvas>
+            {% if (app.request.getLocale()) == 'fr' %}
+            <canvas id="myChartFr" class="w-75 h-50" ></canvas>
+            {% elseif (app.request.getLocale()) == 'en' %}
+            <canvas id="myChartEn" class="w-75 h-50" ></canvas>
+            {% endif %}
         </div>
         <br>
-        <h2>Nombre total: {{ certifications | length }}</h2>
+        <h2>{{ 'portfolio.total'|trans }}: {{ certifications | length }}</h2>
         <article id="zoneCertif" class="row">
             {% if listweb %}
             <section id="webCertif" class="col-lg-5">
-                <h4 class="text-center">Web général</h4>
+                <h4 class="text-center">{{ 'portfolio.webGen'|trans }}</h4>
                 {% for web in listweb %}
                     <a class="allweb {{ web.certifNumber }}" href="{{ asset('bundles/../uploads/img')}}/{{ web.image.alt }}">
                         {{ web.title }}

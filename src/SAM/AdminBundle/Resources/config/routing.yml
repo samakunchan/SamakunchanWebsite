@@ -9,3 +9,7 @@ sam_admin_projectpage:
 sam_admin_certifpage:
     path:     /certification
     defaults: { _controller: SAMAdminBundle:Certification:addCertif }
+
+sam_admin_followpage:
+    path:     /follow-project
+    defaults: { _controller: SAMAdminBundle:FollowProject:follow }

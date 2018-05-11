@@ -2,86 +2,67 @@
 {% block body %}
     <section class="container">
         <section class="homePage jumbotron part1">
-            <h1 class="text-center p-2 welcome">Bienvenue</h1>
-            {% set texte = "Bonjour, je m'appelle Cédric Badjah, je suis développeur web junior
-            et je vous souhaite la bienvenu sur mon site." %}
-            {% set texte1 = "Ce site web présente mes activités et mes projets réalisés." %}
-            <span id="textTwig" class="d-none"> {{ texte }}</span>
-            <span id="textTwig1" class="d-none"> {{ texte1 }}</span>
-            <p id="textTitle"></p>
-            <p class="webmaster">Bonne visite. Cédric Badjah</p>
-        </section>
-        <h2 class="text-center part2">Actualités</h2>
-        <article class="d-flex justify-content-around title part2">
-            <h3 class="smAdapt part2">Github <i class="fa fa-github" style="font-size:30px"></i></h3>
-            <h3 class="smAdapt twitterColor part2">Twitter <i class="fa fa-twitter" style="font-size:30px"></i></h3>
-        </article>
-        <section class="actu row m-1 part2 d-flex">
-            <article class="github part2 col-lg-6">
-                <h3 class="d-lg-none">Github <i class="fa fa-github" style="font-size:30px"></i></h3>
-                <pre class="bg-dark text-white p-2" id="projectMd">Projet : Refonte du portfolio</pre>
-                <pre class="bg-dark text-white p-2" id="dateCommit"></pre>
-                <pre class="bg-dark text-white p-2" id="commit"></pre>
-            </article>
-            <article  class="twitter part2 col-lg-6">
-                <h3 class="d-lg-none twitterColor">Twitter <i class="fa fa-twitter" style="font-size:30px"></i></h3>
-                {% for twitter in statuses %}
-                    {% if twitter.retweeted %}
-                        <div class="p-4 twitterbg">
-                            <h5>
-                                <img class="imgProfilTwit" src="{{ twitter.retweeted_status.user.profile_image_url }}" alt="">
-                                <a href="https://twitter.com/{{ twitter.retweeted_status.user.name }}">{{ twitter.retweeted_status.user.name  }}</a>
-                                <small class="time">{{ twitter.retweeted_status.created_at| time_diff }}</small>
-                            </h5>
-                            <div>
-                                {{ twitter.full_text | deleteHashTags | converturls }}
-                                {% if twitter.retweeted_status.extended_entities is defined %}
-                                    {% for imageRT in twitter.retweeted_status.extended_entities.media %}
-                                        <img style="width: 100%" src="{{ imageRT.media_url }}" alt="{{ imageRT.media_url }}">
-                                    {% endfor%}
-                                {% elseif twitter.retweeted_status.entities is defined%}
-                                    <p>(image non disponible)</p>
-                                {% endif%}
-                            </div>
-                        </div>
-                    {% else%}
-                        <div class="p-4 twitterbg">
-                            <h5>
-                                <img class="imgProfilTwit" src="{{ twitter.user.profile_image_url }}" alt="">
-                                <a href="https://twitter.com/{{ twitter.user.name }}">{{ twitter.user.name  }}</a>
-                                <small class="time">{{ twitter.created_at| time_diff }}</small>
-                            </h5>
-                            <div>
-                                {{ twitter.full_text | deleteHashTags | converturls }}
-                                {% if twitter.entities.media is defined%}
-                                    {% for image in twitter.entities.media %}
-                                        <img style="width: 100%" src="{{ image.media_url }}" alt="{{ image.media_url }}">
-                                    {% endfor%}
-                                {% endif%}
-                            </div>
-                        </div>
-                    {% endif %}
+            <h1 class="text-center p-2 welcome">{{ 'Bienvenue'|trans }}</h1>
 
-                    {% if twitter.entities.urls %}
-                        {% for image in twitter.entities.urls %}
-                            <img src="{{ image.display_url }}" alt="{{ image.display_url }}">
-                        {% endfor %}
-                    {% endif %}
-                    <hr>
-                {% endfor %}
+            <span id="textTwig" class="d-none"> {{ 'homepage.presentation.texte' | trans }}</span>
+            <span id="textTwig1" class="d-none"> {{ 'homepage.presentation.texte1' |trans }}</span>
+            <p id="textTitle"></p>
+            <p class="webmaster">{{ 'homepage.presentation.expression' | trans }}. Cédric Badjah</p>
+        </section>
+    </section>
+    <section class="bg-secondary p-3">
+        <section class="container">
+            <h2 class="text-center part2">{{ 'homepage.actuality.title'| trans }}</h2>
+            <article class="d-flex justify-content-around title part2">
+                <h3 class="smAdapt part2">Github <i class="fa fa-github" style="font-size:30px"></i></h3>
+                <h3 class="smAdapt twitterColor part2">Twitter <i class="fa fa-twitter" style="font-size:30px"></i></h3>
             </article>
+            <section class="actu row m-1 part2 d-flex">
+                <article class="github part2 col-lg-6">
+                    <h3 class="d-lg-none">Github <i class="fa fa-github" style="font-size:30px"></i></h3>
+                    <pre class="bg-dark text-white p-2" id="projectMd">Projet : Refonte du portfolio</pre>
+                    <pre class="bg-dark text-white p-2" id="dateCommit"></pre>
+                    <pre class="bg-dark text-white p-2" id="commit"></pre>
+                </article>
+                <article  class="twitter part2 col-lg-6">
+                    <h3 class="d-lg-none twitterColor">Twitter <i class="fa fa-twitter" style="font-size:30px"></i></h3>
+                    {% for twitter in statuses %}
+                            <div class="p-4 twitterbg">
+                                <h5>
+                                    <img class="imgProfilTwit" src="{{ twitter.user.profile_image_url }}" alt="">
+                                    <a href="https://twitter.com/{{ twitter.user.name }}">{{ twitter.user.name  }}</a>
+                                    <small class="time">{{ twitter.created_at| time_diff }}</small>
+                                </h5>
+                                <div>
+                                    {{ twitter.full_text | deleteHashTags | converturls }}
+                                    {% if twitter.entities.media is defined%}
+                                        {% for image in twitter.entities.media %}
+                                            <img style="width: 100%" src="{{ image.media_url }}" alt="{{ image.media_url }}">
+                                        {% endfor%}
+                                    {% endif%}
+                                </div>
+                            </div>
+                        {% if twitter.entities.urls %}
+                            {% for image in twitter.entities.urls %}
+                                <img src="{{ image.display_url }}" alt="{{ image.display_url }}">
+                            {% endfor %}
+                        {% endif %}
+                        <hr>
+                    {% endfor %}
+                </article>
+            </section>
         </section>
     </section>
     <section class="citationSection part3">
-        <span class="p-2 font-weight-bold">Quelques phrases clés :</span>
+        <span class="p-2 font-weight-bold"> {{ 'homepage.citation.title'|trans }} :</span>
         <blockquote id="citationBlock">
-        <p id="citation"></p>
+        <p id="citation">{{ ''|trans }}</p>
         <span id="author" class="mx-auto"></span>
         </blockquote>
     </section>
     <section class="section2 part4">
         <section class="competence m-5 part3 bg-white">
-            <h3 class="text-center p-2">Mes compétences</h3>
+            <h3 class="text-center p-2">{{ 'homepage.skill'|trans }}</h3>
             <canvas id="myBar" class="w-100 h-25 text-center d-none d-lg-block"></canvas>
             <div class="d-lg-none">
                 <p>HTML5/CSS3: <span id="nbHTML"></span></p>
@@ -93,25 +74,24 @@
                 <p>NodeJs: <span id="nbNode"></span></p>
             </div>
         </section>
-        <section class="region p-4 row part5">
-            <h2 class="text-center col-lg-12 ">Région d'origine</h2>
-            {% image '@SAMCoreBundle/Resources/public/images/route.jpg' %}
-            <img class="col-lg-6 smAdapt" src="{{ asset_url }}" alt="route" />
-            {% endimage %}
-            {% image '@SAMCoreBundle/Resources/public/images/margouillat.jpg' %}
-            <img class="col-sm-8 text-center col-lg-4" src="{{ asset_url }}" alt="margouillat" />
-            {% endimage %}
-        </section>
     </section>
 {% endblock %}
     {% block js %}
         {% javascripts
         '@SAMCoreBundle/Resources/public/js/competence.js'
         '@SAMCoreBundle/Resources/public/js/appear.js'
-        '@SAMCoreBundle/Resources/public/js/citation.js'
         %}
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
+        {% if (app.request.getLocale()) == 'fr' %}
+            {% javascripts'@SAMCoreBundle/Resources/public/js/citationFr.js'%}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% elseif (app.request.getLocale()) == 'en'%}
+            {% javascripts'@SAMCoreBundle/Resources/public/js/citationEn.js'%}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endif %}
 
         <script>
             ajaxGet("{{ apiUrl }}", function (rep) {

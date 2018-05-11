@@ -1,14 +1,16 @@
 sam_portfolio:
     resource: "@SAMPortfolioBundle/Resources/config/routing.yml"
-    prefix:   /portfolio
+    prefix:   /{_locale}/portfolio
 
 sam_admin:
     resource: "@SAMAdminBundle/Resources/config/routing.yml"
-    prefix:   /admin
+    prefix:   /{_locale}/admin
 
 sam_core:
     resource: "@SAMCoreBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

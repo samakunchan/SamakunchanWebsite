@@ -39,7 +39,7 @@ Chart.pluginService.register({
         }
     }
 });
-var config = {
+var configFr = {
     type: 'doughnut',
     data: {
         datasets: [{
@@ -98,7 +98,73 @@ var config = {
         }
     }
 };
+var configEn = {
+    type: 'doughnut',
+    data: {
+        datasets: [{
+            data: [
+                document.getElementsByClassName('allweb').length,
+                document.getElementsByClassName('allhtml').length,
+                document.getElementsByClassName('alljs').length,
+                document.getElementsByClassName('allphp').length
+            ],
+            backgroundColor: [
+                '#1fff50',
+                '#25e9ff',
+                '#1b8fff',
+                '#1c65ff'
+            ],
+            label: 'Dataset 2',
+            hoverBackgroundColor : [
+                '#1fff50',
+                '#25e9ff',
+                '#1b8fff',
+                '#1c65ff'
+            ],
+            hoverBorderColor: [
+                'white',
+                'white',
+                'white',
+                'white'
+            ],
+            hoverBorderWidth: ['5', '5', '5', '5']
+        }],
+        labels: [
+            'General Web',
+            'HTML/CSS',
+            'Javascript',
+            'PHP'
+        ]
+    },
+    options: {
+        responsive: true,
+        legend: {
+            position: 'right'
+        },
+        title: {
+            display: true,
+            text: "General view about all my certificates."
+        },
+        elements: {
+            center: {
+                text: 'Certificates',
+                sidePadding: 20
+            }
+        },
+        animation: {
+            animateScale: true,
+            animateRotate: true
+        }
+    }
+};
 window.onload = function() {
-    var ctx = document.getElementById('myChart').getContext('2d');
-    window.myPie = new Chart(ctx, config);
+
+    if (document.getElementById('myChartFr')){
+        var ctxFr = document.getElementById('myChartFr').getContext('2d');
+        window.myPie = new Chart(ctxFr, configFr);
+    }else {
+        var ctxEn = document.getElementById('myChartEn').getContext('2d');
+        window.myPie = new Chart(ctxEn, configEn);
+    }
+
 };

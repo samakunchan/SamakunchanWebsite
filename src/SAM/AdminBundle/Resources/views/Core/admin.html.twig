@@ -11,5 +11,16 @@
             <li><a href="{{ path('fos_user_profile_edit') }}">Edit Profil</a></li>
             <li><a href="{{ path('sam_admin_projectpage') }}">Ajouter un projet</a></li>
             <li><a href="{{ path('sam_admin_certifpage') }}">Ajouter un certification</a></li>
+            <li><a href="{{ path('sam_admin_followpage') }}">Ajouter un projet à suivre</a></li>
         </ul>
+    <hr>
+
+        <form method="post" >
+                <label for="projectsToFollow">Choisir le projet à suivre</label><br />
+                <select name="projectsToFollow" id="projectsToFollow">
+    {% for projects in projectsToFollow %}
+                    <option value="{{ projects.nameRepo }}">{{ projects.nameRepo }}</option>
+    {% endfor %}
+                </select>
+        </form>
 {% endblock %}

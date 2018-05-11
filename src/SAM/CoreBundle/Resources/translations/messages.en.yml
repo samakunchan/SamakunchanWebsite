@@ -1,0 +1,35 @@
+Bienvenue: Welcome
+dropup:
+    btn: Top
+header:
+    home: Home
+homepage:
+    presentation:
+        texte: Hello, my name is Cedric Badjah. I'm a web developer junior. I welcome you to my website.
+        texte1: This website show my activities and all projects completed. Contact me for more infos :).
+        expression: Enjoy
+    actuality:
+        title: What i'm doing now
+    citation:
+        title: Good things to know
+    skill: My skills
+portfolio:
+    title: My achievements
+    certificat: My certificates
+    details: Details
+    look: Take a look
+    redirect: To the website
+    webGen: General Web
+    total: Total number
+contact:
+    perso:
+        info: My details
+    form:
+        info: Contact me
+        name: Name
+        company: Company
+        phone: Phone
+        subject: Subject
+        submit: Send
+user:
+    access: Accès réservé

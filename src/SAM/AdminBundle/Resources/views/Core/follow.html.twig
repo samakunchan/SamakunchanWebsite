@@ -1,0 +1,32 @@
+{% extends "SAMCoreBundle::layout.html.twig" %}
+{% block body %}
+    <h1 class="text-center">Ajouter un projet</h1>
+    <div class="well form-control">
+        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+        {{ form_errors(form) }}
+        <div class="w-50 mx-auto p-5">
+            <div class="form-control">
+                {{ form_errors(form.nameRepo) }}
+                {{ form_label(form.nameRepo, 'Nom du projet à suivre') }}
+                {{ form_widget(form.nameRepo) }}
+            </div>
+            <div class="form-control">
+                {{ form_errors(form.descrFr) }}
+                {{ form_label(form.descrFr, 'Ajouter une description en français') }}
+                {{ form_widget(form.descrFr) }}
+            </div>
+            <div class="form-control">
+                {{ form_errors(form.descrEn) }}
+                {{ form_label(form.descrEn, 'Ajouter une description en anglais') }}
+                {{ form_widget(form.descrEn) }}
+            </div>
+            {{ form_widget(form.envoyer, {'attr': {'class': 'btn btn-primary'}, 'label': 'contact.form.submit'|trans}) }}
+            {{ form_rest(form) }}
+            {{ form_end(form) }}
+        </div>
+
+
+        {{ form_rest(form) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

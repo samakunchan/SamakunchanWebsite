@@ -10,9 +10,7 @@ html, body {
 header{
     background-color: #b9ae96;
 }
-blockquote{
-    font-size: 25px;
-}
+
 #fondLoader {
     position: fixed;
     z-index: 1;
@@ -38,17 +36,19 @@ blockquote{
 }
 
 #textTitle{
-    margin-left: 25vw;
-    width: 30vw;/*
-    text-shadow: 1px 1px black;*/
+    margin-left: 15vw;
 }
 .webmaster{
     display: none;
     position: relative;
     float: right;
 }
-.homePage{
-    height: 20vw;
+.flag{
+     width: 36px;
+     height: 36px;
+ }
+.flagLink a{
+    text-decoration: none;
 }
 .section2{
     background-color: #7c7c7c;
@@ -77,7 +77,6 @@ blockquote{
 .citationSection{
     padding: 20px;
     background-color: white;
-    height: 16vw;
 }
 #citationBlock{
     padding: 10px;

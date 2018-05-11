@@ -1,0 +1,35 @@
+Welcome: Bienvenue
+dropup:
+    btn: Remonter
+header:
+    home: Accueil
+homepage:
+    presentation:
+        texte: Bonjour, je m'appelle Cédric Badjah, je suis développeur web junior et je vous souhaite la bienvenu sur mon site.
+        texte1: Ce site web présente mes activités et mes projets réalisés. N'hésitez pas à me contacter :).
+        expression: Bonne visite
+    actuality:
+        title: Ce que je fais en ce moment
+    citation:
+            title: Quelques phrases clés
+    skill: Mes compétences
+portfolio:
+    title: Mes Réalisations
+    certificat: Mes certifications
+    details: Détails
+    look: Voir un aperçu
+    redirect: Vers le site
+    webGen: Web général
+    total: Nombre total
+contact:
+    perso:
+        info: Mes coordonnées
+    form:
+        info: Contactez-moi
+        name: Nom
+        company: Entreprise
+        phone: Téléphone
+        subject: Sujet
+        submit: Envoyer
+user:
+    access: Accès réservé

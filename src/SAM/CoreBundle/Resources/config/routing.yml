@@ -1,7 +1,10 @@
 sam_core_homepage:
     path:     /
     defaults: { _controller: SAMCoreBundle:Home:index }
+    requirements:
+        _locale: en|fr
 
 sam_core_contactpage:
     path:     /contact
     defaults: { _controller: SAMCoreBundle:Home:contact }
+

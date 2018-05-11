@@ -8,6 +8,8 @@
 
 namespace SAM\AdminBundle\Controller;
 
+use SAM\CoreBundle\Entity\FollowProject;
+use SAM\CoreBundle\Form\FollowProjectType;
 use SAM\PortfolioBundle\Entity\Certification;
 use SAM\PortfolioBundle\Entity\Project;
 use SAM\PortfolioBundle\Entity\Technology;
@@ -27,7 +29,11 @@ class AdminController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('SAMAdminBundle:Core:admin.html.twig');
+        $followProject = new FollowProject();
+        $form = $this->get('form.factory')->create(FollowProjectType::class, $followProject);
+        $em = $this->getDoctrine()->getManager();
+        $projectToFollow = $em->getRepository('SAMCoreBundle:FollowProject')->findAll();
+        return $this->render('SAMAdminBundle:Core:admin.html.twig', ['projectsToFollow' => $projectToFollow]);
     }
 
     /**
