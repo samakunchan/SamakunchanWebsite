@@ -13,6 +13,13 @@ homepage:
     citation:
         title: Good things to know
     skill: My skills
+    autonomy: Autonomy
+    curiosity: Curiosity
+    work: Work hard
+    motivation: Motivation
+    teamwork: Team work
+    state: Disponibility
+    canvasError: I'm sorry, your browser do not support canvas
 portfolio:
     title: My achievements
     certificat: My certificates
@@ -24,6 +31,8 @@ portfolio:
 contact:
     perso:
         info: My details
+        cvTitle: Click on this link below to download my CV
+        cv: Download my CV
     form:
         info: Contact me
         name: Name

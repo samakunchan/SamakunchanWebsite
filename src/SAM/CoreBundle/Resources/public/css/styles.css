@@ -5,12 +5,13 @@
 
 html, body {
     height: 100%;
-    background-color: #e2d4b7;
+    background-color: #e1eafe;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 header{
     background-color: #b9ae96;
 }
-
 #fondLoader {
     position: fixed;
     z-index: 1;
@@ -18,7 +19,7 @@ header{
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: #e2d4b7;
+    background-color: #e1eafe;
 }
 #loader {
     position: absolute;
@@ -50,8 +51,11 @@ header{
 .flagLink a{
     text-decoration: none;
 }
+#content{
+    width: 95vw;
+}
 .section2{
-    background-color: #7c7c7c;
+    background-color: #bdbdbd;
     padding: 5px;
 }
 @-webkit-keyframes spin {
@@ -138,7 +142,7 @@ header{
 .menuFooter{
     position: fixed;
     bottom: 5%;
-    right: 0;
+    right: 5px;
     z-index: 10;
 }
 .popover{
@@ -148,7 +152,7 @@ header{
     width: 100%;
 }
 .dropdown-menu{
-    transform: translate3d(-7px, -68px, 0px)!important;
+    transform: translate3d(0px, -68px, 0px)!important;
     min-width: 100%!important;
 }
 .dropdown-menu li{
@@ -220,7 +224,7 @@ header{
 }
 /*****/
 /*****/
-/*****/
+/*****/M
 #webCertif, #htmlCertif ,#jsCertif , #phpCertif{
     margin: 20px;
 }
@@ -253,6 +257,31 @@ img.salary{
 .media-object{
     transition: all 0.4s ease-in-out;
 }
+
+/*
+////////////////////////////Progress bar////////////////////////
+*/
+canvas{
+    width: 25vw;
+}
+#myProgress {
+    width: 100%;
+    background-color: whitesmoke;
+    box-shadow: 1px 1px 1px #007bff;
+    border-radius: 5px;
+}
+.myBar {
+    width: 1%;
+    height: 30px;
+    background-color: #007bff;
+    border-radius: 3px;
+}
+.myBar:hover{
+    color: white;
+    transition: all 0.4s ease-in-out;
+}
+#canvas1:hover, #canvas2:hover, #canvas3:hover, #canvas4:hover, #canvas5:hover, #canvas6:hover
+
 @media screen and (max-width: 1024px)
 {
     .hovereffect a.info {

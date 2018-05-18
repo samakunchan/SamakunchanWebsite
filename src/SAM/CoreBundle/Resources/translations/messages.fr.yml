@@ -13,6 +13,13 @@ homepage:
     citation:
             title: Quelques phrases clés
     skill: Mes compétences
+    autonomy: Autonomie
+    curiosity: Curiosité
+    work: Travail
+    motivation: Motivation
+    teamwork: Esprit d'équipe
+    state: Disponibilité
+    canvasError: Désolé, votre navigateur ne supporte pas canvas
 portfolio:
     title: Mes Réalisations
     certificat: Mes certifications
@@ -24,6 +31,8 @@ portfolio:
 contact:
     perso:
         info: Mes coordonnées
+        cvTitle: Cliquer sur le lien ci-dessous pour télécharger mon CV
+        cv: Télécharger mon CV
     form:
         info: Contactez-moi
         name: Nom

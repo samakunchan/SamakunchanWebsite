@@ -34,7 +34,6 @@ var slider = Object.create(Slider);
 setTimeout(function () {
     slider.move();
     setInterval("slider.move()", 15000);
-    console.log("start");
 }, 1000);
 
 
